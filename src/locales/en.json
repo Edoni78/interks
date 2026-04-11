@@ -1,0 +1,125 @@
+{
+  "nav": {
+    "features": "Why interks",
+    "levels": "Levels",
+    "tracks": "Tracks",
+    "how": "How it works",
+    "cta": "Get early access",
+    "langEn": "English",
+    "langSq": "Albanian"
+  },
+  "hero": {
+    "badge": "Interview prep for developers",
+    "title": "Questions and answers for tech interviews —",
+    "titleAccent": "in one calm place.",
+    "subtitle": "interks brings curated Q&A for interns through seniors: frontend, backend, and more. Practice with structure, learn faster, and walk into interviews with confidence.",
+    "primaryCta": "Join the waitlist",
+    "secondaryCta": "See how it works",
+    "footnote": "Built for developers who prefer clarity over noise."
+  },
+  "stats": {
+    "one": { "value": "1", "label": "hub for Q&A" },
+    "two": { "value": "4+", "label": "experience levels" },
+    "three": { "value": "∞", "label": "topics to explore" }
+  },
+  "features": {
+    "title": "Everything you need to prepare",
+    "subtitle": "A focused workspace for technical interview learning — not scattered blog posts and outdated threads.",
+    "items": {
+      "hub": {
+        "title": "Single source of truth",
+        "body": "Pull interview-style questions and clear answers into one flow so you stop jumping between tabs."
+      },
+      "levels": {
+        "title": "Level-aware paths",
+        "body": "From intern to senior: content tagged by depth so you study what matches your stage."
+      },
+      "roles": {
+        "title": "Role-based tracks",
+        "body": "Frontend, backend, and broader software paths — pick a track and stay consistent."
+      },
+      "patterns": {
+        "title": "Patterns you will reuse",
+        "body": "Focus on explanations that transfer: data structures, APIs, system basics, and how to talk through them."
+      }
+    }
+  },
+  "levels": {
+    "title": "Grow with your career stage",
+    "subtitle": "Whether you are starting out or leading systems, interks meets you where you are.",
+    "intern": {
+      "title": "Intern",
+      "body": "Foundations, first interviews, and how to communicate what you have built."
+    },
+    "junior": {
+      "title": "Junior",
+      "body": "Solidify core CS, debugging, and day-to-day shipping in team settings."
+    },
+    "mid": {
+      "title": "Mid",
+      "body": "Ownership, trade-offs, performance, and clearer architectural thinking."
+    },
+    "senior": {
+      "title": "Senior",
+      "body": "Leadership signals, complex design, mentoring narratives, and stakeholder alignment."
+    }
+  },
+  "tracks": {
+    "title": "Tracks that mirror real roles",
+    "subtitle": "Choose a lane — you can switch anytime as your path evolves.",
+    "frontend": {
+      "title": "Frontend",
+      "body": "UI engineering, performance, accessibility, state, and framework-agnostic concepts."
+    },
+    "backend": {
+      "title": "Backend",
+      "body": "Services, databases, scaling basics, reliability, and pragmatic API design."
+    },
+    "fullstack": {
+      "title": "Full-stack",
+      "body": "End-to-end thinking: from client constraints to data and deployment trade-offs."
+    },
+    "software": {
+      "title": "Software engineer",
+      "body": "Generalist interview loops with strong CS fundamentals and problem-solving habits."
+    }
+  },
+  "how": {
+    "title": "How interks fits your week",
+    "subtitle": "Short sessions, steady progress — no cramming required.",
+    "step1": {
+      "title": "Pick level and track",
+      "body": "Tell interks where you are and what role you are targeting."
+    },
+    "step2": {
+      "title": "Practice with structured Q&A",
+      "body": "Work through questions with answers that explain the why — not just the what."
+    },
+    "step3": {
+      "title": "Review and retain",
+      "body": "Revisit weak spots, connect patterns, and build interview muscle memory."
+    }
+  },
+  "cta": {
+    "title": "Ready to prepare with intention?",
+    "subtitle": "Leave your email — we will let you know when interks opens. No spam; unsubscribe anytime.",
+    "placeholder": "you@company.com",
+    "button": "Notify me",
+    "thanks": "You're on the list — we'll be in touch.",
+    "note": "This landing page is a preview. Product access is coming soon."
+  },
+  "footer": {
+    "tagline": "interks — interview Q&A for developers, thoughtfully organized.",
+    "product": "Product",
+    "company": "Company",
+    "legal": "Legal",
+    "linkFeatures": "Features",
+    "linkLevels": "Levels",
+    "linkTracks": "Tracks",
+    "linkAbout": "About",
+    "linkCareers": "Careers",
+    "linkPrivacy": "Privacy",
+    "linkTerms": "Terms",
+    "copy": "© {{year}} interks. All rights reserved."
+  }
+}

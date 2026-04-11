@@ -1,0 +1,125 @@
+{
+  "nav": {
+    "features": "Pse interks",
+    "levels": "Nivelet",
+    "tracks": "Shtigjet",
+    "how": "Si funksionon",
+    "cta": "Qasje e hershme",
+    "langEn": "Anglisht",
+    "langSq": "Shqip"
+  },
+  "hero": {
+    "badge": "Përgatitje për intervista për zhvillues",
+    "title": "Pyetje dhe përgjigje për intervista në teknologji —",
+    "titleAccent": "në një vend të qetë.",
+    "subtitle": "interks mbledh pyetje-përgjigje të kuruar për praktikantë deri në senior: frontend, backend dhe më shumë. Praktikoni me strukturë, mësoni më shpejt dhe hyni në intervista me vetëbesim.",
+    "primaryCta": "Bashkohu në listën e pritjes",
+    "secondaryCta": "Shiko si funksionon",
+    "footnote": "Krijuar për zhvillues që parapëlqejnë qartësinë para zhurmës."
+  },
+  "stats": {
+    "one": { "value": "1", "label": "qendër për P&P" },
+    "two": { "value": "4+", "label": "nivele përvoje" },
+    "three": { "value": "∞", "label": "tema për të eksploruar" }
+  },
+  "features": {
+    "title": "Gjithçka që ju duhet për t'u përgatitur",
+    "subtitle": "Një hapësirë e fokusuar për mësimin e intervistave teknike — jo postime të shpërndara në blog dhe fije të vjetruara.",
+    "items": {
+      "hub": {
+        "title": "Burim i vetëm i së vërtetës",
+        "body": "Mblidhni pyetje në stilin e intervistave dhe përgjigje të qarta në një rrjedhë — pa kaluar nga një skedë në tjetrën."
+      },
+      "levels": {
+        "title": "Rrugë sipas nivelit",
+        "body": "Nga praktikanti te seniori: përmbajtje e etiketuar sipas thellësisë që të studioni atë që përputhet me fazën tuaj."
+      },
+      "roles": {
+        "title": "Shtigje sipas rolit",
+        "body": "Frontend, backend dhe rrugë më të gjera të softuerit — zgjidhni një shteg dhe qëndroni të qëndrueshëm."
+      },
+      "patterns": {
+        "title": "Modele që do t'i ripërdorni",
+        "body": "Fokus në shpjegime që transferohen: struktura të të dhënave, API, bazat e sistemeve dhe si t'i përshkruani me zë të lartë."
+      }
+    }
+  },
+  "levels": {
+    "title": "Rrituni me fazën e karrierës",
+    "subtitle": "Qoftë në fillim apo duke udhëhequr sisteme, interks ju takon aty ku jeni.",
+    "intern": {
+      "title": "Praktikant",
+      "body": "Baza, intervistat e para dhe si të komunikoni atë që keni ndërtuar."
+    },
+    "junior": {
+      "title": "Junior",
+      "body": "Forconi CS bazë, debugging dhe punën e përditshme në ekip."
+    },
+    "mid": {
+      "title": "Mesatar",
+      "body": "Pronësi, kompromise, performancë dhe mendim më i qartë arkitektural."
+    },
+    "senior": {
+      "title": "Senior",
+      "body": "Sinjalet e lidershipit, dizajni kompleks, narrativat e mentorimit dhe përputhja me palët e interesuara."
+    }
+  },
+  "tracks": {
+    "title": "Shtigje që pasqyrojnë role reale",
+    "subtitle": "Zgjidhni një korsi — mund të kaloni kurdo që rruga juaj evolon.",
+    "frontend": {
+      "title": "Frontend",
+      "body": "Inxhinieri UI, performanca, aksesueshmëria, gjendja dhe koncepte të pavarura nga framework-u."
+    },
+    "backend": {
+      "title": "Backend",
+      "body": "Shërbime, baza të dhënash, baza të shkallëzimit, besueshmëria dhe dizajn pragmatik i API-ve."
+    },
+    "fullstack": {
+      "title": "Full-stack",
+      "body": "Mendim skaj-më-skaj: nga kufizimet e klientit te të dhënat dhe kompromiset e deployimit."
+    },
+    "software": {
+      "title": "Inxhinier softueri",
+      "body": "Cikle të përgjithshme intervistash me CS të fortë dhe zakone të mira zgjidhjeje problemesh."
+    }
+  },
+  "how": {
+    "title": "Si interks përshtatet me javën tuaj",
+    "subtitle": "Seanca të shkurtra, progres i qëndrueshëm — pa nevojë për cramming.",
+    "step1": {
+      "title": "Zgjidhni nivelin dhe shtegun",
+      "body": "Tregojini interks ku jeni dhe cilin rol synoni."
+    },
+    "step2": {
+      "title": "Praktikoni me P&P të strukturuara",
+      "body": "Punoni pyetje me përgjigje që shpjegojnë pse — jo vetëm çfarë."
+    },
+    "step3": {
+      "title": "Rishikoni dhe ruani",
+      "body": "Kthehuni te pikat e dobëta, lidhni modelet dhe ndërtoni kujtesë muskulare për intervista."
+    }
+  },
+  "cta": {
+    "title": "Gati të përgatiteni me qëllim?",
+    "subtitle": "Lini emailin tuaj — do t'ju njoftojmë kur interks të hapet. Pa spam; çregjistrohuni kur të doni.",
+    "placeholder": "ju@kompania.com",
+    "button": "Njoftomë",
+    "thanks": "Jeni në listë — do t'ju kontaktojmë.",
+    "note": "Kjo faqe hyrëse është një parashikim. Qasja në produkt vjen së shpejti."
+  },
+  "footer": {
+    "tagline": "interks — pyetje dhe përgjigje për intervista për zhvillues, të organizuara me kujdes.",
+    "product": "Produkti",
+    "company": "Kompania",
+    "legal": "Ligjore",
+    "linkFeatures": "Veçoritë",
+    "linkLevels": "Nivelet",
+    "linkTracks": "Shtigjet",
+    "linkAbout": "Rreth nesh",
+    "linkCareers": "Karriera",
+    "linkPrivacy": "Privatësia",
+    "linkTerms": "Kushtet",
+    "copy": "© {{year}} interks. Të gjitha të drejtat e rezervuara."
+  }
+}
