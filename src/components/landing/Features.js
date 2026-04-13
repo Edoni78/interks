@@ -17,7 +17,7 @@ export function Features() {
     <section id="features" className="scroll-mt-24 py-20 sm:py-24 lg:py-28">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <div className="max-w-2xl">
-          <h2 className="font-display text-3xl font-semibold tracking-tight text-ink sm:text-4xl">{t('features.title')}</h2>
+          <h2 className="font-display text-3xl font-semibold tracking-tight text-sun sm:text-4xl">{t('features.title')}</h2>
           <p className="mt-4 text-lg leading-relaxed text-ink-muted">{t('features.subtitle')}</p>
         </div>
 

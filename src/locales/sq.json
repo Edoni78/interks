@@ -5,6 +5,7 @@
     "tracks": "Shtigjet",
     "how": "Si funksionon",
     "cta": "Qasje e hershme",
+    "adminLogin": "Hyrja e adminit",
     "langEn": "Anglisht",
     "langSq": "Shqip"
   },
@@ -120,6 +121,49 @@
     "linkCareers": "Karriera",
     "linkPrivacy": "Privatësia",
     "linkTerms": "Kushtet",
-    "copy": "© {{year}} interks. Të gjitha të drejtat e rezervuara."
+    "copy": "© {{year}} interks. Të gjitha të drejtat e rezervuara.",
+    "adminLink": "Administrimi"
+  },
+  "admin": {
+    "login": {
+      "heroTitle": "Menaxhoni përmbajtjen e intervistave me siguri",
+      "heroSubtitle": "Shtoni dhe përpunoni pyetje dhe përgjigje në shqip dhe anglisht, të organizuara sipas nivelit.",
+      "panelTitle": "Qasja e administratorit",
+      "email": "Email",
+      "password": "Fjalëkalimi",
+      "signIn": "Hyr",
+      "signUp": "Krijo llogari",
+      "working": "Ju lutem prisni…",
+      "checkEmail": "Kontrolloni emailin për të konfirmuar llogarinë, pastaj hyni.",
+      "errorGeneric": "Diçka shkoi keq. Provoni përsëri.",
+      "configError": "Mungon konfigurimi i Supabase. Shtoni REACT_APP_SUPABASE_URL dhe REACT_APP_SUPABASE_ANON_KEY në .env.local.",
+      "backHome": "Kthehu te faqja"
+    },
+    "dashboard": {
+      "role": "Administrator",
+      "title": "Përmbajtja",
+      "logout": "Dil",
+      "category": "Kategoritë",
+      "levels": "Nivelet",
+      "addQuestion": "Shto pyetje",
+      "editQuestion": "Ndrysho pyetjen",
+      "edit": "Ndrysho",
+      "delete": "Fshi",
+      "save": "Ruaj",
+      "cancel": "Anulo",
+      "questionSq": "Pyetja (shqip)",
+      "questionEn": "Pyetja (anglisht)",
+      "answerSq": "Përgjigjja (shqip)",
+      "answerEn": "Përgjigjja (anglisht)",
+      "sortOrder": "Renditja",
+      "empty": "Ende nuk ka pyetje për këtë nivel.",
+      "confirmDelete": "Të fshihet përgjithmonë kjo pyetje?",
+      "saving": "Duke ruajtur…",
+      "saveError": "Nuk u ruajt. Kontrolloni lidhjen dhe politikat e Supabase.",
+      "noCategories": "Nuk u gjetën kategori. Ekzekutoni supabase/schema.sql në SQL Editor të Supabase.",
+      "backHome": "Kthehu te faqja",
+      "previewSq": "Parapamje SQ",
+      "previewEn": "Parapamje EN"
+    }
   }
 }

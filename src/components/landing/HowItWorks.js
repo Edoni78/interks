@@ -10,7 +10,7 @@ export function HowItWorks() {
     <section id="how" className="scroll-mt-24 border-t border-line bg-subtle/40 py-20 sm:py-24 lg:py-28">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
-          <h2 className="font-display text-3xl font-semibold tracking-tight text-ink sm:text-4xl">{t('how.title')}</h2>
+          <h2 className="font-display text-3xl font-semibold tracking-tight text-sun sm:text-4xl">{t('how.title')}</h2>
           <p className="mt-4 text-lg leading-relaxed text-ink-muted">{t('how.subtitle')}</p>
         </div>
 

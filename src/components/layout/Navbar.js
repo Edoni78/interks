@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { FaBars, FaChevronDown, FaGlobe, FaTimes } from 'react-icons/fa';
+import { FaBars, FaChevronDown, FaGlobe, FaTimes, FaUserLock } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
+import logo from '../../assets/logo.png';
 
 const languages = [
   { code: 'sq', labelKey: 'nav.langSq' },
@@ -37,12 +39,13 @@ export function Navbar() {
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
         <a
           href="#top"
-          className="font-display text-xl font-semibold tracking-tight text-ink"
+          className="flex items-center gap-2 rounded-md font-display text-xl font-semibold tracking-tight text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-line focus-visible:ring-offset-2"
           onClick={(e) => {
             e.preventDefault();
             scrollTo('top');
           }}
         >
+          <img src={logo} alt="" className="h-8 w-8 shrink-0 object-contain" width={32} height={32} />
           interks
         </a>
 
@@ -107,6 +110,14 @@ export function Navbar() {
             )}
           </div>
 
+          <Link
+            to="/admin/login"
+            className="hidden items-center gap-2 rounded-full border border-line bg-canvas px-4 py-2.5 text-sm font-semibold text-ink shadow-sm transition hover:border-sun/60 hover:bg-subtle md:inline-flex"
+          >
+            <FaUserLock className="text-sun" aria-hidden />
+            {t('nav.adminLogin')}
+          </Link>
+
           <button
             type="button"
             onClick={() => scrollTo('cta')}
@@ -141,6 +152,14 @@ export function Navbar() {
             <button type="button" className={`${navLink} text-left`} onClick={() => scrollTo('how')}>
               {t('nav.how')}
             </button>
+            <Link
+              to="/admin/login"
+              onClick={() => setMenuOpen(false)}
+              className="mt-2 inline-flex items-center justify-center gap-2 rounded-full border border-line py-3 text-center text-sm font-semibold text-ink transition hover:bg-subtle"
+            >
+              <FaUserLock className="text-sun" aria-hidden />
+              {t('nav.adminLogin')}
+            </Link>
             <button
               type="button"
               onClick={() => scrollTo('cta')}

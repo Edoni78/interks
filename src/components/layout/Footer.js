@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 export function Footer() {
   const { t } = useTranslation();
@@ -79,6 +80,12 @@ export function Footer() {
         </div>
         <p className="mt-12 border-t border-line pt-8 text-center text-xs text-ink-muted">
           {t('footer.copy', { year })}
+          <span className="mx-2 text-line" aria-hidden>
+            ·
+          </span>
+          <Link to="/admin/login" className="font-medium text-accent hover:text-accent-hover">
+            {t('footer.adminLink')}
+          </Link>
         </p>
       </div>
     </footer>

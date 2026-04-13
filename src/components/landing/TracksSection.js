@@ -16,7 +16,7 @@ export function TracksSection() {
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <div className="max-w-2xl">
-            <h2 className="font-display text-3xl font-semibold tracking-tight text-ink sm:text-4xl">{t('tracks.title')}</h2>
+            <h2 className="font-display text-3xl font-semibold tracking-tight text-sun sm:text-4xl">{t('tracks.title')}</h2>
             <p className="mt-4 text-lg leading-relaxed text-ink-muted">{t('tracks.subtitle')}</p>
           </div>
         </div>

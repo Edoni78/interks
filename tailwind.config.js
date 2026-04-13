@@ -16,6 +16,7 @@ module.exports = {
           hover: '#1D4ED8',
           soft: '#EFF6FF',
         },
+        sun: '#ffde59',
       },
       fontFamily: {
         sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],

@@ -5,6 +5,7 @@
     "tracks": "Tracks",
     "how": "How it works",
     "cta": "Get early access",
+    "adminLogin": "Admin login",
     "langEn": "English",
     "langSq": "Albanian"
   },
@@ -120,6 +121,49 @@
     "linkCareers": "Careers",
     "linkPrivacy": "Privacy",
     "linkTerms": "Terms",
-    "copy": "© {{year}} interks. All rights reserved."
+    "copy": "© {{year}} interks. All rights reserved.",
+    "adminLink": "Admin"
+  },
+  "admin": {
+    "login": {
+      "heroTitle": "Manage interview content with confidence",
+      "heroSubtitle": "Add and edit questions and answers in Albanian and English, organized by level.",
+      "panelTitle": "Admin access",
+      "email": "Email",
+      "password": "Password",
+      "signIn": "Sign in",
+      "signUp": "Create account",
+      "working": "Please wait…",
+      "checkEmail": "Check your inbox to confirm your account, then sign in.",
+      "errorGeneric": "Something went wrong. Try again.",
+      "configError": "Missing Supabase configuration. Add REACT_APP_SUPABASE_URL and REACT_APP_SUPABASE_ANON_KEY to .env.local.",
+      "backHome": "Back to site"
+    },
+    "dashboard": {
+      "role": "Admin",
+      "title": "Content",
+      "logout": "Log out",
+      "category": "Categories",
+      "levels": "Levels",
+      "addQuestion": "Add question",
+      "editQuestion": "Edit question",
+      "edit": "Edit",
+      "delete": "Delete",
+      "save": "Save",
+      "cancel": "Cancel",
+      "questionSq": "Question (Albanian)",
+      "questionEn": "Question (English)",
+      "answerSq": "Answer (Albanian)",
+      "answerEn": "Answer (English)",
+      "sortOrder": "Display order",
+      "empty": "No questions in this level yet.",
+      "confirmDelete": "Delete this question permanently?",
+      "saving": "Saving…",
+      "saveError": "Could not save. Check your connection and Supabase policies.",
+      "noCategories": "No categories found. Run supabase/schema.sql in the Supabase SQL editor.",
+      "backHome": "Back to site",
+      "previewSq": "SQ preview",
+      "previewEn": "EN preview"
+    }
   }
 }

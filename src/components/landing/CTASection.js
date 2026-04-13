@@ -24,7 +24,7 @@ export function CTASection() {
             <div className="mx-auto mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-white/10 backdrop-blur">
               <FaEnvelope className="text-2xl" aria-hidden />
             </div>
-            <h2 className="font-display text-3xl font-semibold tracking-tight sm:text-4xl">{t('cta.title')}</h2>
+            <h2 className="font-display text-3xl font-semibold tracking-tight text-sun sm:text-4xl">{t('cta.title')}</h2>
             <p className="mt-4 text-base leading-relaxed text-white/85 sm:text-lg">{t('cta.subtitle')}</p>
 
             {done ? (
