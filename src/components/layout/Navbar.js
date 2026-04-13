@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FaBars, FaChevronDown, FaGlobe, FaTimes, FaUserLock } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import logo from '../../assets/logo.png';
 
 const languages = [
@@ -11,6 +11,9 @@ const languages = [
 
 export function Navbar() {
   const { t, i18n } = useTranslation();
+  const { pathname } = useLocation();
+  const onHome = pathname === '/';
+  const onLearn = pathname.startsWith('/learn');
   const [menuOpen, setMenuOpen] = useState(false);
   const [langOpen, setLangOpen] = useState(false);
   const langRef = useRef(null);
@@ -34,34 +37,44 @@ export function Navbar() {
     setMenuOpen(false);
   };
 
+  const sectionLink = (id, label) =>
+    onHome ? (
+      <button key={id} type="button" className={navLink} onClick={() => scrollTo(id)}>
+        {label}
+      </button>
+    ) : (
+      <a key={id} href={`/#${id}`} className={navLink}>
+        {label}
+      </a>
+    );
+
+  const practiceClass = `${navLink} ${onLearn ? 'font-semibold text-accent' : ''}`;
+
   return (
     <header className="sticky top-0 z-50 border-b border-line/80 bg-canvas/90 backdrop-blur-md">
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
-        <a
-          href="#top"
+        <Link
+          to="/"
           className="flex items-center gap-2 rounded-md font-display text-xl font-semibold tracking-tight text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-line focus-visible:ring-offset-2"
           onClick={(e) => {
-            e.preventDefault();
-            scrollTo('top');
+            if (onHome) {
+              e.preventDefault();
+              scrollTo('top');
+            }
           }}
         >
           <img src={logo} alt="" className="h-8 w-8 shrink-0 object-contain" width={32} height={32} />
           interks
-        </a>
+        </Link>
 
-        <nav className="hidden items-center gap-8 md:flex" aria-label="Primary">
-          <button type="button" className={navLink} onClick={() => scrollTo('features')}>
-            {t('nav.features')}
-          </button>
-          <button type="button" className={navLink} onClick={() => scrollTo('levels')}>
-            {t('nav.levels')}
-          </button>
-          <button type="button" className={navLink} onClick={() => scrollTo('tracks')}>
-            {t('nav.tracks')}
-          </button>
-          <button type="button" className={navLink} onClick={() => scrollTo('how')}>
-            {t('nav.how')}
-          </button>
+        <nav className="hidden items-center gap-6 lg:gap-8 md:flex" aria-label="Primary">
+          {sectionLink('features', t('nav.features'))}
+          {sectionLink('levels', t('nav.levels'))}
+          {sectionLink('tracks', t('nav.tracks'))}
+          {sectionLink('how', t('nav.how'))}
+          <Link to="/learn" className={practiceClass} aria-current={onLearn ? 'page' : undefined}>
+            {t('nav.practice')}
+          </Link>
         </nav>
 
         <div className="flex items-center gap-2 sm:gap-3">
@@ -118,13 +131,22 @@ export function Navbar() {
             {t('nav.adminLogin')}
           </Link>
 
-          <button
-            type="button"
-            onClick={() => scrollTo('cta')}
-            className="hidden rounded-full bg-accent px-4 py-2.5 text-sm font-semibold text-white shadow-card transition hover:bg-accent-hover sm:inline-flex"
-          >
-            {t('nav.cta')}
-          </button>
+          {onHome ? (
+            <button
+              type="button"
+              onClick={() => scrollTo('cta')}
+              className="hidden rounded-full bg-accent px-4 py-2.5 text-sm font-semibold text-white shadow-card transition hover:bg-accent-hover sm:inline-flex"
+            >
+              {t('nav.cta')}
+            </button>
+          ) : (
+            <a
+              href="/#cta"
+              className="hidden rounded-full bg-accent px-4 py-2.5 text-sm font-semibold text-white shadow-card transition hover:bg-accent-hover sm:inline-flex sm:items-center sm:justify-center"
+            >
+              {t('nav.cta')}
+            </a>
+          )}
 
           <button
             type="button"
@@ -140,18 +162,48 @@ export function Navbar() {
       {menuOpen && (
         <div className="border-t border-line bg-canvas px-4 py-4 md:hidden">
           <div className="flex flex-col gap-3">
-            <button type="button" className={`${navLink} text-left`} onClick={() => scrollTo('features')}>
-              {t('nav.features')}
-            </button>
-            <button type="button" className={`${navLink} text-left`} onClick={() => scrollTo('levels')}>
-              {t('nav.levels')}
-            </button>
-            <button type="button" className={`${navLink} text-left`} onClick={() => scrollTo('tracks')}>
-              {t('nav.tracks')}
-            </button>
-            <button type="button" className={`${navLink} text-left`} onClick={() => scrollTo('how')}>
-              {t('nav.how')}
-            </button>
+            {onHome ? (
+              <>
+                <button type="button" className={`${navLink} text-left`} onClick={() => scrollTo('features')}>
+                  {t('nav.features')}
+                </button>
+                <button type="button" className={`${navLink} text-left`} onClick={() => scrollTo('levels')}>
+                  {t('nav.levels')}
+                </button>
+                <button type="button" className={`${navLink} text-left`} onClick={() => scrollTo('tracks')}>
+                  {t('nav.tracks')}
+                </button>
+                <button type="button" className={`${navLink} text-left`} onClick={() => scrollTo('how')}>
+                  {t('nav.how')}
+                </button>
+              </>
+            ) : (
+              <>
+                <Link to="/" className={`${navLink} text-left`} onClick={() => setMenuOpen(false)}>
+                  {t('nav.home')}
+                </Link>
+                <a href="/#features" className={`${navLink} text-left`} onClick={() => setMenuOpen(false)}>
+                  {t('nav.features')}
+                </a>
+                <a href="/#levels" className={`${navLink} text-left`} onClick={() => setMenuOpen(false)}>
+                  {t('nav.levels')}
+                </a>
+                <a href="/#tracks" className={`${navLink} text-left`} onClick={() => setMenuOpen(false)}>
+                  {t('nav.tracks')}
+                </a>
+                <a href="/#how" className={`${navLink} text-left`} onClick={() => setMenuOpen(false)}>
+                  {t('nav.how')}
+                </a>
+              </>
+            )}
+            <Link
+              to="/learn"
+              className={`${navLink} text-left ${onLearn ? 'font-semibold text-accent' : ''}`}
+              aria-current={onLearn ? 'page' : undefined}
+              onClick={() => setMenuOpen(false)}
+            >
+              {t('nav.practice')}
+            </Link>
             <Link
               to="/admin/login"
               onClick={() => setMenuOpen(false)}
@@ -160,13 +212,23 @@ export function Navbar() {
               <FaUserLock className="text-sun" aria-hidden />
               {t('nav.adminLogin')}
             </Link>
-            <button
-              type="button"
-              onClick={() => scrollTo('cta')}
-              className="mt-2 rounded-full bg-accent py-3 text-center text-sm font-semibold text-white"
-            >
-              {t('nav.cta')}
-            </button>
+            {onHome ? (
+              <button
+                type="button"
+                onClick={() => scrollTo('cta')}
+                className="mt-2 rounded-full bg-accent py-3 text-center text-sm font-semibold text-white"
+              >
+                {t('nav.cta')}
+              </button>
+            ) : (
+              <a
+                href="/#cta"
+                className="mt-2 rounded-full bg-accent py-3 text-center text-sm font-semibold text-white"
+                onClick={() => setMenuOpen(false)}
+              >
+                {t('nav.cta')}
+              </a>
+            )}
           </div>
         </div>
       )}

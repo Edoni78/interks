@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { FaArrowRight, FaLayerGroup, FaUserLock } from 'react-icons/fa';
+import { FaArrowRight, FaBookOpen, FaLayerGroup, FaUserLock } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
 export function Hero() {
@@ -52,6 +52,13 @@ export function Hero() {
             {t('hero.primaryCta')}
             <FaArrowRight className="text-sm" aria-hidden />
           </button>
+          <Link
+            to="/learn"
+            className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-accent/35 bg-canvas px-7 py-3.5 text-base font-semibold text-accent shadow-sm transition hover:border-accent hover:bg-accent-soft/50"
+          >
+            <FaBookOpen className="text-sm" aria-hidden />
+            {t('hero.practiceCta')}
+          </Link>
           <button
             type="button"
             onClick={() => go('how')}
@@ -59,13 +66,7 @@ export function Hero() {
           >
             {t('hero.secondaryCta')}
           </button>
-          <Link
-            to="/admin/login"
-            className="inline-flex items-center justify-center gap-2 rounded-full border border-line border-sun/40 bg-canvas px-7 py-3.5 text-base font-semibold text-ink shadow-sm transition hover:border-sun hover:bg-sun/10"
-          >
-            <FaUserLock className="text-sun" aria-hidden />
-            {t('nav.adminLogin')}
-          </Link>
+
         </div>
 
         <p className="mt-8 text-sm text-ink-muted">{t('hero.footnote')}</p>

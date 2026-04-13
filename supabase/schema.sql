@@ -94,3 +94,20 @@ create policy "questions_delete_authenticated"
   for delete
   to authenticated
   using (true);
+
+-- Public read (learn page): anonymous visitors can list categories and questions.
+-- Run this block on existing projects that already applied the policies above.
+
+drop policy if exists "categories_select_anon" on public.categories;
+create policy "categories_select_anon"
+  on public.categories
+  for select
+  to anon
+  using (true);
+
+drop policy if exists "questions_select_anon" on public.questions;
+create policy "questions_select_anon"
+  on public.questions
+  for select
+  to anon
+  using (true);

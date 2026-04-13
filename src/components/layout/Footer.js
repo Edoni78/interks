@@ -55,6 +55,11 @@ export function Footer() {
                   {t('footer.linkTracks')}
                 </a>
               </li>
+              <li>
+                <Link to="/learn" className="hover:text-ink">
+                  {t('footer.linkPractice')}
+                </Link>
+              </li>
             </ul>
           </div>
           <div>

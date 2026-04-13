@@ -2,6 +2,8 @@ import { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   FaArrowLeft,
+  FaChevronDown,
+  FaChevronUp,
   FaGlobe,
   FaLayerGroup,
   FaPen,
@@ -24,6 +26,7 @@ export function AdminDashboard() {
   const [modalOpen, setModalOpen] = useState(false);
   const [editing, setEditing] = useState(null);
   const [saving, setSaving] = useState(false);
+  const [expandedAnswerId, setExpandedAnswerId] = useState(null);
 
   const labelForCategory = useCallback(
     (cat) => {
@@ -231,8 +234,16 @@ export function AdminDashboard() {
             </div>
           </header>
 
-          <main className="flex-1 px-4 py-8 sm:px-6 lg:px-10">
-            <div className="mx-auto max-w-4xl lg:max-w-5xl">
+          <main className="relative flex-1 overflow-hidden px-4 py-8 sm:px-6 lg:px-10">
+            <div
+              className="pointer-events-none absolute inset-0 opacity-[0.55]"
+              aria-hidden
+            >
+              <div className="absolute -left-32 top-0 h-80 w-80 rounded-full bg-accent-soft blur-3xl" />
+              <div className="absolute right-0 top-1/3 h-72 w-72 rounded-full bg-sun/25 blur-3xl" />
+              <div className="absolute bottom-0 left-1/3 h-64 w-64 rounded-full bg-accent/5 blur-3xl" />
+            </div>
+            <div className="relative mx-auto max-w-4xl lg:max-w-5xl">
               <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
                 <div className="lg:hidden">
                   <h1 className="font-display text-2xl font-semibold text-ink">{t('admin.dashboard.title')}</h1>
@@ -247,12 +258,23 @@ export function AdminDashboard() {
                     setModalOpen(true);
                   }}
                   disabled={!categoryId}
-                  className="inline-flex items-center justify-center gap-2 self-start rounded-full bg-accent px-6 py-3 text-sm font-semibold text-white shadow-card transition hover:bg-accent-hover disabled:opacity-50"
+                  className="inline-flex items-center justify-center gap-2 self-start rounded-full bg-accent px-6 py-3 text-sm font-semibold text-white shadow-soft transition hover:bg-accent-hover disabled:opacity-50"
                 >
                   <FaPlus aria-hidden />
                   {t('admin.dashboard.addQuestion')}
                 </button>
               </div>
+
+              {categoryId && questions.length > 0 && (
+                <div className="mb-8 flex flex-wrap items-center gap-3 rounded-3xl border border-line/80 bg-canvas/90 px-5 py-4 shadow-card backdrop-blur-sm">
+                  <span className="inline-flex items-center rounded-full bg-ink px-3 py-1 text-xs font-semibold uppercase tracking-wider text-white">
+                    {activeCategory ? labelForCategory(activeCategory) : '—'}
+                  </span>
+                  <span className="text-sm font-medium text-ink-muted">
+                    {t('admin.dashboard.inThisLevel', { count: questions.length })}
+                  </span>
+                </div>
+              )}
 
               {loadError && (
                 <div className="mb-6 rounded-2xl border border-red-200 bg-red-50 px-5 py-4 text-sm text-red-900">
@@ -267,15 +289,18 @@ export function AdminDashboard() {
               )}
 
               {categoryId && questions.length === 0 && !loadError && (
-                <div className="rounded-3xl border border-dashed border-line bg-canvas/80 px-8 py-16 text-center">
-                  <p className="text-ink-muted">{t('admin.dashboard.empty')}</p>
+                <div className="rounded-3xl border border-dashed border-accent/25 bg-gradient-to-br from-canvas via-canvas to-accent-soft/40 px-8 py-16 text-center shadow-card">
+                  <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-accent-soft text-2xl text-accent shadow-sm">
+                    <FaLayerGroup aria-hidden />
+                  </div>
+                  <p className="mx-auto max-w-sm text-base leading-relaxed text-ink-muted">{t('admin.dashboard.empty')}</p>
                   <button
                     type="button"
                     onClick={() => {
                       setEditing(null);
                       setModalOpen(true);
                     }}
-                    className="mt-6 inline-flex items-center gap-2 rounded-full bg-sun px-6 py-3 text-sm font-semibold text-ink shadow-sm transition hover:brightness-95"
+                    className="mt-8 inline-flex items-center gap-2 rounded-full bg-sun px-7 py-3.5 text-sm font-semibold text-ink shadow-soft transition hover:brightness-95"
                   >
                     <FaPlus aria-hidden />
                     {t('admin.dashboard.addQuestion')}
@@ -283,51 +308,117 @@ export function AdminDashboard() {
                 </div>
               )}
 
-              <ul className="space-y-4">
-                {questions.map((q) => (
-                  <li
-                    key={q.id}
-                    className="rounded-3xl border border-line bg-canvas p-6 shadow-sm transition hover:shadow-card"
-                  >
-                    <div className="flex flex-col gap-4 sm:flex-row sm:justify-between">
-                      <div className="min-w-0 flex-1 space-y-4">
-                        <div>
-                          <p className="text-xs font-semibold uppercase tracking-wider text-sun">
-                            {t('admin.dashboard.previewSq')}
-                          </p>
-                          <p className="mt-1 whitespace-pre-wrap text-sm font-medium text-ink">{q.question_sq || '—'}</p>
-                        </div>
-                        <div>
-                          <p className="text-xs font-semibold uppercase tracking-wider text-sun">
-                            {t('admin.dashboard.previewEn')}
-                          </p>
-                          <p className="mt-1 whitespace-pre-wrap text-sm font-medium text-ink">{q.question_en || '—'}</p>
+              <ul className="space-y-5">
+                {questions.map((q, index) => {
+                  const answersOpen = expandedAnswerId === q.id;
+                  return (
+                    <li
+                      key={q.id}
+                      className="group relative overflow-hidden rounded-3xl border border-line/90 bg-canvas/95 shadow-card backdrop-blur-sm transition hover:border-accent/20 hover:shadow-soft"
+                    >
+                      <div
+                        className="absolute left-0 top-0 h-full w-1 bg-gradient-to-b from-accent via-accent/70 to-sun opacity-90"
+                        aria-hidden
+                      />
+                      <div className="p-6 pl-7 sm:p-7 sm:pl-8">
+                        <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+                          <div className="flex min-w-0 flex-1 items-start gap-4">
+                            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-ink font-display text-sm font-semibold text-white shadow-sm">
+                              {index + 1}
+                            </span>
+                            <div className="min-w-0 flex-1 space-y-4">
+                              <div>
+                                <h3 className="font-display text-xs font-semibold uppercase tracking-[0.12em] text-accent">
+                                  {t('admin.dashboard.sectionQuestions')}
+                                </h3>
+                                <div className="mt-3 grid gap-3 md:grid-cols-2">
+                                  <div className="rounded-2xl border border-line/80 bg-sun/10 p-4">
+                                    <p className="text-[10px] font-bold uppercase tracking-wider text-ink/50">
+                                      {t('admin.dashboard.previewSq')}
+                                    </p>
+                                    <p className="mt-2 whitespace-pre-wrap text-sm leading-relaxed text-ink">
+                                      {q.question_sq || '—'}
+                                    </p>
+                                  </div>
+                                  <div className="rounded-2xl border border-line/80 bg-accent-soft/80 p-4">
+                                    <p className="text-[10px] font-bold uppercase tracking-wider text-ink/50">
+                                      {t('admin.dashboard.previewEn')}
+                                    </p>
+                                    <p className="mt-2 whitespace-pre-wrap text-sm leading-relaxed text-ink">
+                                      {q.question_en || '—'}
+                                    </p>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div>
+                                <button
+                                  type="button"
+                                  onClick={() => setExpandedAnswerId(answersOpen ? null : q.id)}
+                                  className="inline-flex items-center gap-2 rounded-full border border-line bg-subtle/80 px-4 py-2 text-xs font-semibold text-ink transition hover:border-accent/30 hover:bg-accent-soft/50"
+                                  aria-expanded={answersOpen}
+                                >
+                                  {answersOpen ? (
+                                    <>
+                                      <FaChevronUp className="text-accent" aria-hidden />
+                                      {t('admin.dashboard.hideAnswers')}
+                                    </>
+                                  ) : (
+                                    <>
+                                      <FaChevronDown className="text-accent" aria-hidden />
+                                      {t('admin.dashboard.showAnswers')}
+                                    </>
+                                  )}
+                                </button>
+                                {answersOpen && (
+                                  <div className="mt-4 grid gap-3 md:grid-cols-2">
+                                    <div className="rounded-2xl border border-line/80 bg-subtle p-4">
+                                      <p className="text-[10px] font-bold uppercase tracking-wider text-accent">
+                                        {t('admin.dashboard.answerSq')}
+                                      </p>
+                                      <p className="mt-2 whitespace-pre-wrap text-sm leading-relaxed text-ink-muted">
+                                        {q.answer_sq || '—'}
+                                      </p>
+                                    </div>
+                                    <div className="rounded-2xl border border-line/80 bg-subtle p-4">
+                                      <p className="text-[10px] font-bold uppercase tracking-wider text-accent">
+                                        {t('admin.dashboard.answerEn')}
+                                      </p>
+                                      <p className="mt-2 whitespace-pre-wrap text-sm leading-relaxed text-ink-muted">
+                                        {q.answer_en || '—'}
+                                      </p>
+                                    </div>
+                                  </div>
+                                )}
+                              </div>
+                            </div>
+                          </div>
+                          <div className="flex shrink-0 gap-2 sm:flex-col sm:pt-1">
+                            <button
+                              type="button"
+                              onClick={() => {
+                                setEditing(q);
+                                setModalOpen(true);
+                              }}
+                              className="inline-flex flex-1 items-center justify-center gap-2 rounded-2xl border border-line bg-canvas px-4 py-2.5 text-sm font-semibold text-ink shadow-sm transition hover:border-accent/25 hover:bg-accent-soft/40 sm:flex-none"
+                            >
+                              <FaPen className="text-accent" aria-hidden />
+                              {t('admin.dashboard.edit')}
+                            </button>
+                            <button
+                              type="button"
+                              onClick={() => onDelete(q.id)}
+                              className="inline-flex flex-1 items-center justify-center gap-2 rounded-2xl border border-red-100 bg-canvas px-4 py-2.5 text-sm font-semibold text-red-700 shadow-sm transition hover:bg-red-50 sm:flex-none"
+                            >
+                              <FaTrash aria-hidden />
+                              {t('admin.dashboard.delete')}
+                            </button>
+                          </div>
                         </div>
                       </div>
-                      <div className="flex shrink-0 gap-2 sm:flex-col">
-                        <button
-                          type="button"
-                          onClick={() => {
-                            setEditing(q);
-                            setModalOpen(true);
-                          }}
-                          className="inline-flex flex-1 items-center justify-center gap-2 rounded-xl border border-line px-4 py-2.5 text-sm font-semibold text-ink transition hover:bg-subtle sm:flex-none"
-                        >
-                          <FaPen className="text-accent" aria-hidden />
-                          {t('admin.dashboard.edit')}
-                        </button>
-                        <button
-                          type="button"
-                          onClick={() => onDelete(q.id)}
-                          className="inline-flex flex-1 items-center justify-center gap-2 rounded-xl border border-red-200 px-4 py-2.5 text-sm font-semibold text-red-700 transition hover:bg-red-50 sm:flex-none"
-                        >
-                          <FaTrash aria-hidden />
-                          {t('admin.dashboard.delete')}
-                        </button>
-                      </div>
-                    </div>
-                  </li>
-                ))}
+                    </li>
+                  );
+                })}
               </ul>
             </div>
           </main>

@@ -5,6 +5,8 @@
     "tracks": "Tracks",
     "how": "How it works",
     "cta": "Get early access",
+    "home": "Home",
+    "practice": "Practice",
     "adminLogin": "Admin login",
     "langEn": "English",
     "langSq": "Albanian"
@@ -16,7 +18,24 @@
     "subtitle": "interks brings curated Q&A for interns through seniors: frontend, backend, and more. Practice with structure, learn faster, and walk into interviews with confidence.",
     "primaryCta": "Join the waitlist",
     "secondaryCta": "See how it works",
+    "practiceCta": "Practice questions",
     "footnote": "Built for developers who prefer clarity over noise."
+  },
+  "learn": {
+    "title": "Practice",
+    "subtitle": "Work through interview-style questions at your level. Reveal the answer when you are ready.",
+    "pickLevel": "Level",
+    "question": "Question",
+    "answer": "Answer",
+    "showAnswer": "Reveal answer",
+    "hideAnswer": "Hide answer",
+    "previous": "Previous",
+    "next": "Next",
+    "progress": "Question {{current}} of {{total}}",
+    "empty": "No questions in this level yet.",
+    "loading": "Loading…",
+    "loadError": "Something went wrong loading questions. Try again.",
+    "keyboardHint": "Tip: use ← → to move between questions."
   },
   "stats": {
     "one": { "value": "1", "label": "hub for Q&A" },
@@ -117,6 +136,7 @@
     "linkFeatures": "Features",
     "linkLevels": "Levels",
     "linkTracks": "Tracks",
+    "linkPractice": "Practice",
     "linkAbout": "About",
     "linkCareers": "Careers",
     "linkPrivacy": "Privacy",
@@ -163,7 +183,12 @@
       "noCategories": "No categories found. Run supabase/schema.sql in the Supabase SQL editor.",
       "backHome": "Back to site",
       "previewSq": "SQ preview",
-      "previewEn": "EN preview"
+      "previewEn": "EN preview",
+      "sectionQuestions": "Questions",
+      "sectionAnswers": "Answers",
+      "showAnswers": "Show answers",
+      "hideAnswers": "Hide answers",
+      "inThisLevel": "{{count}} in this level"
     }
   }
 }

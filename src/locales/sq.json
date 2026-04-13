@@ -5,6 +5,8 @@
     "tracks": "Shtigjet",
     "how": "Si funksionon",
     "cta": "Qasje e hershme",
+    "home": "Faqja kryesore",
+    "practice": "Praktikë",
     "adminLogin": "Hyrja e adminit",
     "langEn": "Anglisht",
     "langSq": "Shqip"
@@ -16,7 +18,24 @@
     "subtitle": "interks mbledh pyetje-përgjigje të kuruar për praktikantë deri në senior: frontend, backend dhe më shumë. Praktikoni me strukturë, mësoni më shpejt dhe hyni në intervista me vetëbesim.",
     "primaryCta": "Bashkohu në listën e pritjes",
     "secondaryCta": "Shiko si funksionon",
+    "practiceCta": "Praktiko pyetjet",
     "footnote": "Krijuar për zhvillues që parapëlqejnë qartësinë para zhurmës."
+  },
+  "learn": {
+    "title": "Praktikë",
+    "subtitle": "Punoni pyetje në stilin e intervistave sipas nivelit tuaj. Zbuloni përgjigjen kur të jeni gati.",
+    "pickLevel": "Niveli",
+    "question": "Pyetja",
+    "answer": "Përgjigjja",
+    "showAnswer": "Shfaq përgjigjen",
+    "hideAnswer": "Fshih përgjigjen",
+    "previous": "E mëparshmja",
+    "next": "Tjetra",
+    "progress": "Pyetja {{current}} nga {{total}}",
+    "empty": "Ende nuk ka pyetje për këtë nivel.",
+    "loading": "Duke ngarkuar…",
+    "loadError": "Ngarkimi dështoi. Provoni përsëri.",
+    "keyboardHint": "Këshillë: përdorni ← → për të kaluar mes pyetjeve."
   },
   "stats": {
     "one": { "value": "1", "label": "qendër për P&P" },
@@ -117,6 +136,7 @@
     "linkFeatures": "Veçoritë",
     "linkLevels": "Nivelet",
     "linkTracks": "Shtigjet",
+    "linkPractice": "Praktikë",
     "linkAbout": "Rreth nesh",
     "linkCareers": "Karriera",
     "linkPrivacy": "Privatësia",
@@ -163,7 +183,12 @@
       "noCategories": "Nuk u gjetën kategori. Ekzekutoni supabase/schema.sql në SQL Editor të Supabase.",
       "backHome": "Kthehu te faqja",
       "previewSq": "Parapamje SQ",
-      "previewEn": "Parapamje EN"
+      "previewEn": "Parapamje EN",
+      "sectionQuestions": "Pyetjet",
+      "sectionAnswers": "Përgjigjet",
+      "showAnswers": "Shfaq përgjigjet",
+      "hideAnswers": "Fshih përgjigjet",
+      "inThisLevel": "{{count}} në këtë nivel"
     }
   }
 }
