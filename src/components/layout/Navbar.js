@@ -52,7 +52,7 @@ export function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-line/80 bg-canvas/90 backdrop-blur-md">
-      <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
+      <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
         <Link
           to="/"
           className="flex items-center gap-2 rounded-md font-display text-xl font-semibold tracking-tight text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-line focus-visible:ring-offset-2"
@@ -74,6 +74,9 @@ export function Navbar() {
           {sectionLink('how', t('nav.how'))}
           <Link to="/learn" className={practiceClass} aria-current={onLearn ? 'page' : undefined}>
             {t('nav.practice')}
+          </Link>
+          <Link to="/submit-question" className={navLink}>
+            {t('nav.submitQuestion')}
           </Link>
         </nav>
 
@@ -131,23 +134,6 @@ export function Navbar() {
             {t('nav.adminLogin')}
           </Link>
 
-          {onHome ? (
-            <button
-              type="button"
-              onClick={() => scrollTo('cta')}
-              className="hidden rounded-full bg-accent px-4 py-2.5 text-sm font-semibold text-white shadow-card transition hover:bg-accent-hover sm:inline-flex"
-            >
-              {t('nav.cta')}
-            </button>
-          ) : (
-            <a
-              href="/#cta"
-              className="hidden rounded-full bg-accent px-4 py-2.5 text-sm font-semibold text-white shadow-card transition hover:bg-accent-hover sm:inline-flex sm:items-center sm:justify-center"
-            >
-              {t('nav.cta')}
-            </a>
-          )}
-
           <button
             type="button"
             className="inline-flex rounded-full border border-line p-2.5 text-ink md:hidden"
@@ -204,6 +190,9 @@ export function Navbar() {
             >
               {t('nav.practice')}
             </Link>
+            <Link to="/submit-question" className={`${navLink} text-left`} onClick={() => setMenuOpen(false)}>
+              {t('nav.submitQuestion')}
+            </Link>
             <Link
               to="/admin/login"
               onClick={() => setMenuOpen(false)}
@@ -212,23 +201,6 @@ export function Navbar() {
               <FaUserLock className="text-sun" aria-hidden />
               {t('nav.adminLogin')}
             </Link>
-            {onHome ? (
-              <button
-                type="button"
-                onClick={() => scrollTo('cta')}
-                className="mt-2 rounded-full bg-accent py-3 text-center text-sm font-semibold text-white"
-              >
-                {t('nav.cta')}
-              </button>
-            ) : (
-              <a
-                href="/#cta"
-                className="mt-2 rounded-full bg-accent py-3 text-center text-sm font-semibold text-white"
-                onClick={() => setMenuOpen(false)}
-              >
-                {t('nav.cta')}
-              </a>
-            )}
           </div>
         </div>
       )}

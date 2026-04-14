@@ -6,11 +6,14 @@
 
 create table if not exists public.categories (
   id uuid primary key default gen_random_uuid(),
-  slug text not null unique check (slug in ('intern', 'junior', 'mid')),
+  slug text not null unique,
   label_sq text not null,
   label_en text not null,
   sort_order int not null default 0
 );
+
+-- Allow custom slugs for new categories on existing databases.
+alter table public.categories drop constraint if exists categories_slug_check;
 
 create table if not exists public.questions (
   id uuid primary key default gen_random_uuid(),
@@ -66,6 +69,28 @@ create policy "categories_select_authenticated"
   to authenticated
   using (true);
 
+drop policy if exists "categories_insert_authenticated" on public.categories;
+create policy "categories_insert_authenticated"
+  on public.categories
+  for insert
+  to authenticated
+  with check (true);
+
+drop policy if exists "categories_update_authenticated" on public.categories;
+create policy "categories_update_authenticated"
+  on public.categories
+  for update
+  to authenticated
+  using (true)
+  with check (true);
+
+drop policy if exists "categories_delete_authenticated" on public.categories;
+create policy "categories_delete_authenticated"
+  on public.categories
+  for delete
+  to authenticated
+  using (true);
+
 drop policy if exists "questions_select_authenticated" on public.questions;
 create policy "questions_select_authenticated"
   on public.questions
@@ -111,3 +136,46 @@ create policy "questions_select_anon"
   for select
   to anon
   using (true);
+
+-- User question submissions ---------------------------------------------------
+-- Public users can submit proposals; admin approves/declines from dashboard.
+
+create table if not exists public.question_submissions (
+  id uuid primary key default gen_random_uuid(),
+  category_id uuid not null references public.categories (id) on delete cascade,
+  full_name text not null default '',
+  phone text not null default '',
+  question_text text not null default '',
+  answer_text text not null default '',
+  status text not null default 'pending' check (status in ('pending', 'approved', 'declined')),
+  reviewed_by uuid null references auth.users (id) on delete set null,
+  reviewed_at timestamptz null,
+  created_at timestamptz not null default now()
+);
+
+create index if not exists question_submissions_status_created_idx
+  on public.question_submissions (status, created_at);
+
+alter table public.question_submissions enable row level security;
+
+drop policy if exists "question_submissions_insert_anon" on public.question_submissions;
+create policy "question_submissions_insert_anon"
+  on public.question_submissions
+  for insert
+  to anon, authenticated
+  with check (true);
+
+drop policy if exists "question_submissions_select_authenticated" on public.question_submissions;
+create policy "question_submissions_select_authenticated"
+  on public.question_submissions
+  for select
+  to authenticated
+  using (true);
+
+drop policy if exists "question_submissions_update_authenticated" on public.question_submissions;
+create policy "question_submissions_update_authenticated"
+  on public.question_submissions
+  for update
+  to authenticated
+  using (true)
+  with check (true);

@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { FaArrowRight, FaBookOpen, FaLayerGroup, FaUserLock } from 'react-icons/fa';
+import { FaBookOpen, FaLayerGroup } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
 export function Hero() {
@@ -44,14 +44,6 @@ export function Hero() {
         <p className="mt-6 max-w-2xl text-lg leading-relaxed text-ink-muted sm:text-xl">{t('hero.subtitle')}</p>
 
         <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
-          <button
-            type="button"
-            onClick={() => go('cta')}
-            className="inline-flex items-center justify-center gap-2 rounded-full bg-accent px-7 py-3.5 text-base font-semibold text-white shadow-soft transition hover:bg-accent-hover"
-          >
-            {t('hero.primaryCta')}
-            <FaArrowRight className="text-sm" aria-hidden />
-          </button>
           <Link
             to="/learn"
             className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-accent/35 bg-canvas px-7 py-3.5 text-base font-semibold text-accent shadow-sm transition hover:border-accent hover:bg-accent-soft/50"

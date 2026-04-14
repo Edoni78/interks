@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
+  FaArrowLeft,
   FaChevronLeft,
   FaChevronRight,
   FaEye,
@@ -74,21 +75,14 @@ export default function Learn() {
 
   const activeCategory = useMemo(() => {
     if (!categories.length) return null;
-    if (slug) {
-      const found = categories.find((c) => c.slug === slug);
-      return found || categories[0];
-    }
-    return categories[0];
+    if (!slug) return null;
+    return categories.find((c) => c.slug === slug) || null;
   }, [categories, slug]);
 
   useEffect(() => {
-    if (!categories.length) return;
-    if (!slug) {
-      navigate(`/learn/${categories[0].slug}`, { replace: true });
-      return;
-    }
+    if (!categories.length || !slug) return;
     const ok = categories.some((c) => c.slug === slug);
-    if (!ok) navigate(`/learn/${categories[0].slug}`, { replace: true });
+    if (!ok) navigate('/learn', { replace: true });
   }, [categories, slug, navigate]);
 
   useEffect(() => {
@@ -155,6 +149,10 @@ export default function Learn() {
     navigate(`/learn/${s}`);
   };
 
+  const resetCategory = () => {
+    navigate('/learn');
+  };
+
   return (
     <div id="top" className="min-h-screen bg-subtle">
       <Navbar />
@@ -170,6 +168,12 @@ export default function Learn() {
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">{t('nav.practice')}</p>
             <h1 className="mt-3 font-display text-3xl font-semibold tracking-tight text-ink sm:text-4xl">{t('learn.title')}</h1>
             <p className="mt-4 text-base leading-relaxed text-ink-muted sm:text-lg">{t('learn.subtitle')}</p>
+            <Link
+              to="/submit-question"
+              className="mt-6 inline-flex items-center rounded-full border border-line bg-canvas px-4 py-2.5 text-sm font-semibold text-ink transition hover:bg-subtle"
+            >
+              {t('nav.submitQuestion')}
+            </Link>
           </header>
 
           {loadError === 'config' && (
@@ -194,134 +198,144 @@ export default function Learn() {
             </p>
           )}
 
-          {!catLoading && !loadError && categories.length > 0 && (
-            <div className="grid gap-8 lg:grid-cols-[minmax(0,220px)_1fr] lg:gap-12">
-              <aside className="lg:sticky lg:top-28 lg:self-start">
-                <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-ink-muted">{t('learn.pickLevel')}</p>
-                <nav className="flex flex-row gap-2 overflow-x-auto pb-1 lg:flex-col lg:overflow-visible" aria-label={t('learn.pickLevel')}>
-                  {categories.map((cat) => {
-                    const active = activeCategory?.id === cat.id;
-                    return (
-                      <button
-                        key={cat.id}
-                        type="button"
-                        onClick={() => selectLevel(cat.slug)}
-                        className={`flex shrink-0 items-center gap-3 rounded-2xl px-4 py-3 text-left text-sm font-semibold transition lg:w-full ${
-                          active
-                            ? 'bg-ink text-white shadow-card'
-                            : 'border border-line bg-canvas text-ink-muted shadow-sm hover:border-accent/25 hover:text-ink'
-                        }`}
-                      >
-                        <FaLayerGroup className={active ? 'text-sun' : 'text-accent'} aria-hidden />
-                        {labelForCategory(cat)}
-                      </button>
-                    );
-                  })}
-                </nav>
-                <p className="mt-6 hidden text-xs leading-relaxed text-ink-muted lg:block">{t('learn.keyboardHint')}</p>
-              </aside>
-
-              <div className="min-w-0">
-                {qLoading && (
-                  <div className="flex min-h-[320px] items-center justify-center rounded-3xl border border-line bg-canvas/90 shadow-card backdrop-blur-sm">
-                    <p className="text-ink-muted">{t('learn.loading')}</p>
-                  </div>
-                )}
-
-                {!qLoading && total === 0 && (
-                  <div className="rounded-3xl border border-dashed border-accent/30 bg-gradient-to-br from-canvas via-canvas to-accent-soft/30 px-8 py-16 text-center shadow-card">
-                    <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-accent-soft text-xl text-accent">
-                      <FaLayerGroup aria-hidden />
-                    </div>
-                    <p className="mx-auto max-w-sm text-ink-muted">{t('learn.empty')}</p>
-                    <Link
-                      to="/admin/login"
-                      className="mt-8 inline-block text-sm font-semibold text-accent hover:text-accent-hover"
-                    >
-                      {t('nav.adminLogin')}
-                    </Link>
-                  </div>
-                )}
-
-                {!qLoading && total > 0 && current && (
-                  <article className="overflow-hidden rounded-3xl border border-line/90 bg-canvas/95 shadow-soft backdrop-blur-sm">
-                    <div className="h-1.5 w-full bg-gradient-to-r from-accent via-accent/80 to-sun" aria-hidden />
-                    <div className="px-6 py-8 sm:px-10 sm:py-10">
-                      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-                        <span className="inline-flex w-fit items-center rounded-full bg-ink px-3 py-1 text-xs font-semibold uppercase tracking-wider text-white">
-                          {labelForCategory(activeCategory)}
-                        </span>
-                        <p className="text-sm font-medium text-ink-muted">
-                          {t('learn.progress', { current: index + 1, total })}
-                        </p>
-                      </div>
-
-                      <div className="mt-6 h-1.5 overflow-hidden rounded-full bg-subtle">
-                        <div
-                          className="h-full rounded-full bg-gradient-to-r from-accent to-sun transition-all duration-300"
-                          style={{ width: `${((index + 1) / total) * 100}%` }}
-                        />
-                      </div>
-
-                      <p className="mt-10 text-xs font-bold uppercase tracking-[0.15em] text-accent">{t('learn.question')}</p>
-                      <p className="mt-3 whitespace-pre-wrap font-display text-xl font-medium leading-snug text-ink sm:text-2xl sm:leading-snug">
-                        {textForQuestion(current)}
-                      </p>
-
-                      <div className="mt-8">
-                        <button
-                          type="button"
-                          onClick={() => setRevealed((r) => !r)}
-                          className="inline-flex items-center gap-2 rounded-full border border-line bg-subtle/80 px-5 py-2.5 text-sm font-semibold text-ink transition hover:border-accent/30 hover:bg-accent-soft/50"
-                          aria-expanded={revealed}
-                        >
-                          {revealed ? (
-                            <>
-                              <FaEyeSlash className="text-accent" aria-hidden />
-                              {t('learn.hideAnswer')}
-                            </>
-                          ) : (
-                            <>
-                              <FaEye className="text-accent" aria-hidden />
-                              {t('learn.showAnswer')}
-                            </>
-                          )}
-                        </button>
-
-                        {revealed && (
-                          <div className="mt-6 rounded-2xl border border-line/80 bg-gradient-to-br from-subtle to-accent-soft/20 p-6 shadow-sm">
-                            <p className="text-xs font-bold uppercase tracking-[0.15em] text-ink/50">{t('learn.answer')}</p>
-                            <p className="mt-3 whitespace-pre-wrap text-base leading-relaxed text-ink-muted">{textForAnswer(current)}</p>
-                          </div>
-                        )}
-                      </div>
-
-                      <div className="mt-10 flex flex-col gap-3 border-t border-line pt-8 sm:flex-row sm:items-center sm:justify-between">
-                        <button
-                          type="button"
-                          disabled={!canPrev}
-                          onClick={() => setIndex((i) => i - 1)}
-                          className="inline-flex items-center justify-center gap-2 rounded-2xl border border-line bg-canvas px-5 py-3 text-sm font-semibold text-ink shadow-sm transition hover:border-accent/25 hover:bg-accent-soft/30 disabled:cursor-not-allowed disabled:opacity-40"
-                        >
-                          <FaChevronLeft aria-hidden />
-                          {t('learn.previous')}
-                        </button>
-                        <button
-                          type="button"
-                          disabled={!canNext}
-                          onClick={() => setIndex((i) => i + 1)}
-                          className="inline-flex items-center justify-center gap-2 rounded-2xl bg-accent px-5 py-3 text-sm font-semibold text-white shadow-card transition hover:bg-accent-hover disabled:cursor-not-allowed disabled:opacity-40"
-                        >
-                          {t('learn.next')}
-                          <FaChevronRight aria-hidden />
-                        </button>
-                      </div>
-
-                      <p className="mt-6 text-center text-xs text-ink-muted lg:hidden">{t('learn.keyboardHint')}</p>
-                    </div>
-                  </article>
-                )}
+          {!catLoading && !loadError && categories.length > 0 && !activeCategory && (
+            <section className="rounded-3xl border border-line/80 bg-canvas/95 p-6 shadow-card backdrop-blur-sm sm:p-8">
+              <div className="mb-6">
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">{t('learn.pickLevel')}</p>
+                <h2 className="mt-2 font-display text-2xl font-semibold text-ink sm:text-3xl">{t('learn.title')}</h2>
               </div>
+              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                {categories.map((cat) => (
+                  <button
+                    key={cat.id}
+                    type="button"
+                    onClick={() => selectLevel(cat.slug)}
+                    className="group rounded-2xl border border-line bg-canvas p-5 text-left shadow-sm transition hover:-translate-y-0.5 hover:border-accent/30 hover:shadow-card"
+                  >
+                    <div className="flex items-center gap-3">
+                      <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-accent-soft text-accent">
+                        <FaLayerGroup aria-hidden />
+                      </span>
+                      <span className="font-display text-lg font-semibold text-ink">{labelForCategory(cat)}</span>
+                    </div>
+                    <p className="mt-4 text-sm font-medium text-ink-muted">{t('learn.openCategory')}</p>
+                  </button>
+                ))}
+              </div>
+            </section>
+          )}
+
+          {!catLoading && !loadError && categories.length > 0 && activeCategory && (
+            <div className="min-w-0">
+              <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
+                <button
+                  type="button"
+                  onClick={resetCategory}
+                  className="inline-flex items-center gap-2 rounded-full border border-line bg-canvas px-4 py-2 text-sm font-semibold text-ink transition hover:bg-subtle"
+                >
+                  <FaArrowLeft aria-hidden />
+                  {t('learn.changeCategory')}
+                </button>
+                <span className="inline-flex items-center rounded-full bg-ink px-3 py-1 text-xs font-semibold uppercase tracking-wider text-white">
+                  {labelForCategory(activeCategory)}
+                </span>
+              </div>
+
+              {qLoading && (
+                <div className="flex min-h-[320px] items-center justify-center rounded-3xl border border-line bg-canvas/90 shadow-card backdrop-blur-sm">
+                  <p className="text-ink-muted">{t('learn.loading')}</p>
+                </div>
+              )}
+
+              {!qLoading && total === 0 && (
+                <div className="rounded-3xl border border-dashed border-accent/30 bg-gradient-to-br from-canvas via-canvas to-accent-soft/30 px-8 py-16 text-center shadow-card">
+                  <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-accent-soft text-xl text-accent">
+                    <FaLayerGroup aria-hidden />
+                  </div>
+                  <p className="mx-auto max-w-sm text-ink-muted">{t('learn.empty')}</p>
+                  <Link
+                    to="/admin/login"
+                    className="mt-8 inline-block text-sm font-semibold text-accent hover:text-accent-hover"
+                  >
+                    {t('nav.adminLogin')}
+                  </Link>
+                </div>
+              )}
+
+              {!qLoading && total > 0 && current && (
+                <article className="overflow-hidden rounded-3xl border border-line/90 bg-canvas/95 shadow-soft backdrop-blur-sm">
+                  <div className="h-1.5 w-full bg-gradient-to-r from-accent via-accent/80 to-sun" aria-hidden />
+                  <div className="px-6 py-8 sm:px-10 sm:py-10">
+                    <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                      <p className="text-sm font-medium text-ink-muted">
+                        {t('learn.progress', { current: index + 1, total })}
+                      </p>
+                      <p className="text-xs text-ink-muted">{t('learn.keyboardHint')}</p>
+                    </div>
+
+                    <div className="mt-6 h-1.5 overflow-hidden rounded-full bg-subtle">
+                      <div
+                        className="h-full rounded-full bg-gradient-to-r from-accent to-sun transition-all duration-300"
+                        style={{ width: `${((index + 1) / total) * 100}%` }}
+                      />
+                    </div>
+
+                    <p className="mt-10 text-xs font-bold uppercase tracking-[0.15em] text-accent">{t('learn.question')}</p>
+                    <p className="mt-3 whitespace-pre-wrap font-display text-xl font-medium leading-snug text-ink sm:text-2xl sm:leading-snug">
+                      {textForQuestion(current)}
+                    </p>
+
+                    <div className="mt-8">
+                      <button
+                        type="button"
+                        onClick={() => setRevealed((r) => !r)}
+                        className="inline-flex items-center gap-2 rounded-full border border-line bg-subtle/80 px-5 py-2.5 text-sm font-semibold text-ink transition hover:border-accent/30 hover:bg-accent-soft/50"
+                        aria-expanded={revealed}
+                      >
+                        {revealed ? (
+                          <>
+                            <FaEyeSlash className="text-accent" aria-hidden />
+                            {t('learn.hideAnswer')}
+                          </>
+                        ) : (
+                          <>
+                            <FaEye className="text-accent" aria-hidden />
+                            {t('learn.showAnswer')}
+                          </>
+                        )}
+                      </button>
+
+                      {revealed && (
+                        <div className="mt-6 rounded-2xl border border-line/80 bg-gradient-to-br from-subtle to-accent-soft/20 p-6 shadow-sm">
+                          <p className="text-xs font-bold uppercase tracking-[0.15em] text-ink/50">{t('learn.answer')}</p>
+                          <p className="mt-3 whitespace-pre-wrap text-base leading-relaxed text-ink-muted">{textForAnswer(current)}</p>
+                        </div>
+                      )}
+                    </div>
+
+                    <div className="mt-10 flex flex-col gap-3 border-t border-line pt-8 sm:flex-row sm:items-center sm:justify-between">
+                      <button
+                        type="button"
+                        disabled={!canPrev}
+                        onClick={() => setIndex((i) => i - 1)}
+                        className="inline-flex items-center justify-center gap-2 rounded-2xl border border-line bg-canvas px-5 py-3 text-sm font-semibold text-ink shadow-sm transition hover:border-accent/25 hover:bg-accent-soft/30 disabled:cursor-not-allowed disabled:opacity-40"
+                      >
+                        <FaChevronLeft aria-hidden />
+                        {t('learn.previous')}
+                      </button>
+                      <button
+                        type="button"
+                        disabled={!canNext}
+                        onClick={() => setIndex((i) => i + 1)}
+                        className="inline-flex items-center justify-center gap-2 rounded-2xl bg-accent px-5 py-3 text-sm font-semibold text-white shadow-card transition hover:bg-accent-hover disabled:cursor-not-allowed disabled:opacity-40"
+                      >
+                        {t('learn.next')}
+                        <FaChevronRight aria-hidden />
+                      </button>
+                    </div>
+                  </div>
+                </article>
+              )}
             </div>
           )}
         </div>

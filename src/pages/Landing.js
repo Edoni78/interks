@@ -1,4 +1,3 @@
-import { CTASection } from '../components/landing/CTASection';
 import { Features } from '../components/landing/Features';
 import { Hero } from '../components/landing/Hero';
 import { HowItWorks } from '../components/landing/HowItWorks';
@@ -19,7 +18,6 @@ export default function Landing() {
         <LevelsSection />
         <TracksSection />
         <HowItWorks />
-        <CTASection />
       </main>
       <Footer />
     </div>

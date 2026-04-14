@@ -4,6 +4,7 @@ import { AdminLogin } from './admin/AdminLogin';
 import { ProtectedRoute } from './admin/ProtectedRoute';
 import Landing from './pages/Landing';
 import Learn from './pages/Learn';
+import SubmitQuestion from './pages/SubmitQuestion';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Route path="/" element={<Landing />} />
         <Route path="/learn" element={<Learn />} />
         <Route path="/learn/:slug" element={<Learn />} />
+        <Route path="/submit-question" element={<SubmitQuestion />} />
         <Route path="/admin/login" element={<AdminLogin />} />
         <Route path="/admin" element={<Navigate to="/admin/dashboard" replace />} />
         <Route
