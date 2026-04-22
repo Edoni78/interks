@@ -11,8 +11,8 @@ export function AdminDashboard() {
   const d = useAdminDashboard();
 
   return (
-    <div className="min-h-screen bg-subtle">
-      <div className="flex min-h-screen">
+    <div className="min-h-screen w-full min-w-0 bg-subtle">
+      <div className="flex min-h-screen w-full min-w-0">
         <AdminSidebar
           t={d.t}
           activeSection={d.activeSection}
@@ -27,7 +27,7 @@ export function AdminDashboard() {
           viewingNotes={d.viewingNotes}
         />
 
-        <div className="flex min-w-0 flex-1 flex-col">
+        <div className="flex min-h-0 min-w-0 w-full flex-1 flex-col">
           <AdminDashboardHeader
             t={d.t}
             signOut={d.signOut}

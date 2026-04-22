@@ -67,7 +67,7 @@ function NoteEditorToolbar({ editor, t }) {
 
   return (
     <div
-      className="flex flex-wrap items-center gap-1 border-b border-line bg-subtle/40 px-2 py-2"
+      className="flex w-full min-w-0 flex-wrap items-center gap-1 border-b border-line bg-subtle/40 px-2 py-2"
       role="toolbar"
       aria-label={t('admin.dashboard.noteEditorToolbar')}
     >
@@ -194,7 +194,7 @@ function NoteEditorToolbar({ editor, t }) {
   );
 }
 
-export function NoteRichTextEditor({ initialBody, onChange, placeholder, t }) {
+export function NoteRichTextEditor({ initialBody, onChange, placeholder, t, fullSize = false }) {
   const initialHtml = migrateBodyToEditorHtml(initialBody);
 
   const editor = useEditor(
@@ -234,9 +234,14 @@ export function NoteRichTextEditor({ initialBody, onChange, placeholder, t }) {
   }, [editor, initialBody]);
 
   return (
-    <div className="note-rich-editor overflow-hidden rounded-xl border border-line bg-canvas">
+    <div
+      className={`note-rich-editor w-full min-w-0 overflow-hidden rounded-xl border border-line bg-canvas ${fullSize ? 'note-rich-editor--full flex min-h-0 flex-1 flex-col' : ''}`}
+    >
       <NoteEditorToolbar editor={editor} t={t} />
-      <EditorContent editor={editor} className="note-rich-editor max-h-[min(50vh,420px)] overflow-y-auto" />
+      <EditorContent
+        editor={editor}
+        className={`note-rich-editor min-h-0 overflow-y-auto ${fullSize ? 'flex-1 max-h-none' : 'max-h-[min(50vh,420px)]'}`}
+      />
     </div>
   );
 }

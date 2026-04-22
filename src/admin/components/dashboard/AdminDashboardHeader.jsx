@@ -15,8 +15,8 @@ export function AdminDashboardHeader({
   viewingNotes,
 }) {
   return (
-    <header className="sticky top-0 z-40 border-b border-line bg-canvas/95 backdrop-blur-md">
-      <div className="flex items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
+    <header className="sticky top-0 z-40 w-full min-w-0 border-b border-line bg-canvas/95 backdrop-blur-md">
+      <div className="flex w-full min-w-0 items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
         <div className="flex min-w-0 items-center gap-3">
           <Link
             to="/"
@@ -53,7 +53,7 @@ export function AdminDashboardHeader({
         </div>
       </div>
 
-      <div className="flex gap-2 overflow-x-auto border-t border-line bg-subtle/50 px-4 py-3 lg:hidden">
+      <div className="flex w-full min-w-0 gap-2 overflow-x-auto border-t border-line bg-subtle/50 px-4 py-3 lg:hidden">
         <button
           type="button"
           onClick={() => setActiveSection('questions')}
