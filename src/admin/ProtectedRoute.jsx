@@ -1,6 +1,12 @@
-import { useEffect, useState } from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import { supabase } from '../lib/supabase';
+
+const AuthSessionContext = createContext(null);
+
+export function useAuthSession() {
+  return useContext(AuthSessionContext);
+}
 
 export function ProtectedRoute({ children }) {
   const [session, setSession] = useState(undefined);
@@ -16,18 +22,15 @@ export function ProtectedRoute({ children }) {
   if (session === undefined) {
     return (
       <div className="flex min-h-screen items-center justify-center bg-subtle">
-        <div
-          className="h-9 w-9 animate-spin rounded-full border-2 border-accent border-t-transparent"
-          aria-hidden
-        />
+        <div className="h-9 w-9 animate-spin rounded-full border-2 border-accent border-t-transparent" aria-hidden />
         <span className="sr-only">Loading</span>
       </div>
     );
   }
 
   if (!session) {
-    return <Navigate to="/admin/login" replace />;
+    return <Navigate to="/login" replace />;
   }
 
-  return children;
+  return <AuthSessionContext.Provider value={session}>{children}</AuthSessionContext.Provider>;
 }

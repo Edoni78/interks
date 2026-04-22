@@ -1,35 +1,24 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { FaBars, FaChevronDown, FaGlobe, FaTimes, FaUserLock } from 'react-icons/fa';
+import { FaBars, FaTimes, FaUserCircle } from 'react-icons/fa';
 import { Link, useLocation } from 'react-router-dom';
 import logo from '../../assets/logo.png';
-
-const languages = [
-  { code: 'sq', labelKey: 'nav.langSq' },
-  { code: 'en', labelKey: 'nav.langEn' },
-];
+import { supabase } from '../../lib/supabase';
 
 export function Navbar() {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const { pathname } = useLocation();
   const onHome = pathname === '/';
-  const onLearn = pathname.startsWith('/learn');
   const [menuOpen, setMenuOpen] = useState(false);
-  const [langOpen, setLangOpen] = useState(false);
-  const langRef = useRef(null);
+  const [session, setSession] = useState(undefined);
 
   useEffect(() => {
-    const onDoc = (e) => {
-      if (langRef.current && !langRef.current.contains(e.target)) {
-        setLangOpen(false);
-      }
-    };
-    document.addEventListener('mousedown', onDoc);
-    return () => document.removeEventListener('mousedown', onDoc);
+    supabase.auth.getSession().then(({ data: { session: s } }) => setSession(s ?? null));
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, s) => setSession(s ?? null));
+    return () => subscription.unsubscribe();
   }, []);
-
-  const langCode = (i18n.language || 'sq').split('-')[0];
-  const current = languages.find((l) => l.code === langCode) || languages[0];
 
   const navLink = 'text-ink-muted hover:text-ink transition-colors text-sm font-medium';
   const scrollTo = (id) => {
@@ -47,8 +36,6 @@ export function Navbar() {
         {label}
       </a>
     );
-
-  const practiceClass = `${navLink} ${onLearn ? 'font-semibold text-accent' : ''}`;
 
   return (
     <header className="sticky top-0 z-50 border-b border-line/80 bg-canvas/90 backdrop-blur-md">
@@ -72,73 +59,41 @@ export function Navbar() {
           {sectionLink('levels', t('nav.levels'))}
           {sectionLink('tracks', t('nav.tracks'))}
           {sectionLink('how', t('nav.how'))}
-          <Link to="/learn" className={practiceClass} aria-current={onLearn ? 'page' : undefined}>
-            {t('nav.practice')}
-          </Link>
-          <Link to="/submit-question" className={navLink}>
-            {t('nav.submitQuestion')}
-          </Link>
         </nav>
 
         <div className="flex items-center gap-2 sm:gap-3">
-          <div className="relative" ref={langRef}>
-            <button
-              type="button"
-              onClick={() => setLangOpen((o) => !o)}
-              className="flex items-center gap-2 rounded-full border border-line bg-canvas px-3 py-2 text-sm font-medium text-ink shadow-sm transition hover:bg-subtle hover:shadow-card"
-              aria-expanded={langOpen}
-              aria-haspopup="listbox"
+          {session === undefined ? (
+            <span className="hidden h-10 w-24 animate-pulse rounded-full bg-subtle md:inline-block" aria-hidden />
+          ) : session ? (
+            <Link
+              to="/dashboard"
+              className="hidden items-center gap-2 rounded-full border border-line bg-canvas px-4 py-2.5 text-sm font-semibold text-ink shadow-sm transition hover:border-accent/30 hover:bg-subtle md:inline-flex"
             >
-              <FaGlobe className="text-accent" aria-hidden />
-              <span className="hidden sm:inline">{t(current.labelKey)}</span>
-              <FaChevronDown
-                className={`text-xs text-ink-muted transition ${langOpen ? 'rotate-180' : ''}`}
-                aria-hidden
-              />
-            </button>
-            {langOpen && (
-              <ul
-                role="listbox"
-                className="absolute right-0 mt-2 min-w-[11rem] overflow-hidden rounded-2xl border border-line bg-canvas py-1 shadow-soft"
+              <FaUserCircle className="text-accent" aria-hidden />
+              {t('nav.workspace')}
+            </Link>
+          ) : (
+            <>
+              <Link
+                to="/signup"
+                className="hidden rounded-full border border-line bg-canvas px-4 py-2.5 text-sm font-semibold text-ink shadow-sm transition hover:bg-subtle md:inline-flex"
               >
-                {languages.map((lang) => (
-                  <li key={lang.code} role="option" aria-selected={langCode === lang.code}>
-                    <button
-                      type="button"
-                      className={`flex w-full items-center justify-between px-4 py-2.5 text-left text-sm transition hover:bg-subtle ${
-                        langCode === lang.code ? 'font-semibold text-accent' : 'text-ink'
-                      }`}
-                      onClick={() => {
-                        i18n.changeLanguage(lang.code);
-                        setLangOpen(false);
-                      }}
-                    >
-                      {t(lang.labelKey)}
-                      {langCode === lang.code && (
-                        <span className="text-accent" aria-hidden>
-                          ✓
-                        </span>
-                      )}
-                    </button>
-                  </li>
-                ))}
-              </ul>
-            )}
-          </div>
-
-          <Link
-            to="/admin/login"
-            className="hidden items-center gap-2 rounded-full border border-line bg-canvas px-4 py-2.5 text-sm font-semibold text-ink shadow-sm transition hover:border-sun/60 hover:bg-subtle md:inline-flex"
-          >
-            <FaUserLock className="text-sun" aria-hidden />
-            {t('nav.adminLogin')}
-          </Link>
+                {t('nav.createAccount')}
+              </Link>
+              <Link
+                to="/login"
+                className="hidden items-center gap-2 rounded-full bg-accent px-4 py-2.5 text-sm font-semibold text-white shadow-card transition hover:bg-accent-hover md:inline-flex"
+              >
+                {t('nav.signIn')}
+              </Link>
+            </>
+          )}
 
           <button
             type="button"
             className="inline-flex rounded-full border border-line p-2.5 text-ink md:hidden"
             onClick={() => setMenuOpen((o) => !o)}
-            aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+            aria-label={menuOpen ? 'Mbyll menunë' : 'Hap menunë'}
           >
             {menuOpen ? <FaTimes /> : <FaBars />}
           </button>
@@ -182,25 +137,33 @@ export function Navbar() {
                 </a>
               </>
             )}
-            <Link
-              to="/learn"
-              className={`${navLink} text-left ${onLearn ? 'font-semibold text-accent' : ''}`}
-              aria-current={onLearn ? 'page' : undefined}
-              onClick={() => setMenuOpen(false)}
-            >
-              {t('nav.practice')}
-            </Link>
-            <Link to="/submit-question" className={`${navLink} text-left`} onClick={() => setMenuOpen(false)}>
-              {t('nav.submitQuestion')}
-            </Link>
-            <Link
-              to="/admin/login"
-              onClick={() => setMenuOpen(false)}
-              className="mt-2 inline-flex items-center justify-center gap-2 rounded-full border border-line py-3 text-center text-sm font-semibold text-ink transition hover:bg-subtle"
-            >
-              <FaUserLock className="text-sun" aria-hidden />
-              {t('nav.adminLogin')}
-            </Link>
+            {session ? (
+              <Link
+                to="/dashboard"
+                onClick={() => setMenuOpen(false)}
+                className="mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-accent py-3 text-center text-sm font-semibold text-white shadow-card transition hover:bg-accent-hover"
+              >
+                <FaUserCircle aria-hidden />
+                {t('nav.workspace')}
+              </Link>
+            ) : (
+              <>
+                <Link
+                  to="/signup"
+                  onClick={() => setMenuOpen(false)}
+                  className={`${navLink} text-left font-semibold text-ink`}
+                >
+                  {t('nav.createAccount')}
+                </Link>
+                <Link
+                  to="/login"
+                  onClick={() => setMenuOpen(false)}
+                  className="mt-1 inline-flex items-center justify-center gap-2 rounded-full border border-line py-3 text-center text-sm font-semibold text-ink transition hover:bg-subtle"
+                >
+                  {t('nav.signIn')}
+                </Link>
+              </>
+            )}
           </div>
         </div>
       )}

@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { FaBookOpen, FaLayerGroup } from 'react-icons/fa';
+import { FaRocket } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
 export function Hero() {
@@ -27,41 +27,37 @@ export function Hero() {
 
       <div className="relative mx-auto max-w-6xl px-4 pb-20 pt-16 sm:px-6 sm:pb-24 sm:pt-20 lg:px-8 lg:pb-28 lg:pt-24">
         <div className="inline-flex items-center gap-2 rounded-full border border-line bg-canvas px-4 py-1.5 text-xs font-medium text-ink-muted shadow-sm">
-          <FaLayerGroup className="text-accent" aria-hidden />
-          {t('hero.badge')}
+          <FaRocket className="text-accent" aria-hidden />
+          {t('landing.hero.badge')}
         </div>
 
         <h1
           id="hero-heading"
           className="mt-8 max-w-4xl font-display text-4xl font-semibold leading-[1.12] tracking-tight text-ink sm:text-5xl lg:text-[3.25rem] lg:leading-[1.1]"
         >
-          {t('hero.title')}{' '}
-          <span className="bg-gradient-to-r from-accent via-sky-500 to-sun bg-clip-text text-transparent">
-            {t('hero.titleAccent')}
-          </span>
+          {t('landing.hero.title')}
         </h1>
 
-        <p className="mt-6 max-w-2xl text-lg leading-relaxed text-ink-muted sm:text-xl">{t('hero.subtitle')}</p>
+        <p className="mt-6 max-w-2xl text-lg leading-relaxed text-ink-muted sm:text-xl">{t('landing.hero.subtitle')}</p>
 
         <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
           <Link
-            to="/learn"
-            className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-accent/35 bg-canvas px-7 py-3.5 text-base font-semibold text-accent shadow-sm transition hover:border-accent hover:bg-accent-soft/50"
+            to="/signup"
+            className="inline-flex items-center justify-center gap-2 rounded-full bg-accent px-7 py-3.5 text-base font-semibold text-white shadow-card transition hover:bg-accent-hover"
           >
-            <FaBookOpen className="text-sm" aria-hidden />
-            {t('hero.practiceCta')}
+            <FaRocket className="text-sm" aria-hidden />
+            {t('landing.hero.ctaStart')}
           </Link>
           <button
             type="button"
-            onClick={() => go('how')}
+            onClick={() => go('features')}
             className="inline-flex items-center justify-center rounded-full border border-line bg-canvas px-7 py-3.5 text-base font-semibold text-ink shadow-sm transition hover:bg-subtle"
           >
-            {t('hero.secondaryCta')}
+            {t('landing.hero.secondary')}
           </button>
-
         </div>
 
-        <p className="mt-8 text-sm text-ink-muted">{t('hero.footnote')}</p>
+        <p className="mt-8 text-sm text-ink-muted">{t('landing.hero.footnote')}</p>
       </div>
     </section>
   );

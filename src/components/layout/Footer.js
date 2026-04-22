@@ -56,7 +56,7 @@ export function Footer() {
                 </a>
               </li>
               <li>
-                <Link to="/learn" className="hover:text-ink">
+                <Link to="/signup" className="hover:text-ink">
                   {t('footer.linkPractice')}
                 </Link>
               </li>
@@ -88,8 +88,8 @@ export function Footer() {
           <span className="mx-2 text-line" aria-hidden>
             ·
           </span>
-          <Link to="/admin/login" className="font-medium text-accent hover:text-accent-hover">
-            {t('footer.adminLink')}
+          <Link to="/login" className="font-medium text-accent hover:text-accent-hover">
+            {t('footer.signIn')}
           </Link>
         </p>
       </div>

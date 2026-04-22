@@ -1,14 +1,15 @@
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { FaGlobe, FaLock, FaEnvelope } from 'react-icons/fa';
-import { Link, useNavigate } from 'react-router-dom';
+import { FaLock, FaEnvelope } from 'react-icons/fa';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { supabase, isSupabaseConfigured } from '../lib/supabase';
 import logo from '../assets/logo.png';
 
 export function AdminLogin() {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const navigate = useNavigate();
-  const [mode, setMode] = useState('signin');
+  const [searchParams] = useSearchParams();
+  const [mode, setMode] = useState(() => (searchParams.get('mode') === 'signup' ? 'signup' : 'signin'));
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -16,14 +17,16 @@ export function AdminLogin() {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    if (searchParams.get('mode') === 'signup') {
+      setMode('signup');
+    }
+  }, [searchParams]);
+
+  useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
-      if (session) navigate('/admin/dashboard', { replace: true });
+      if (session) navigate('/dashboard', { replace: true });
     });
   }, [navigate]);
-
-  const toggleLang = () => {
-    i18n.changeLanguage(i18n.language.startsWith('en') ? 'sq' : 'en');
-  };
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -38,17 +41,21 @@ export function AdminLogin() {
       if (mode === 'signin') {
         const { error: err } = await supabase.auth.signInWithPassword({ email, password });
         if (err) throw err;
-        navigate('/admin/dashboard', { replace: true });
+        navigate('/dashboard', { replace: true });
       } else {
-        const { error: err } = await supabase.auth.signUp({
+        const { data, error: err } = await supabase.auth.signUp({
           email,
           password,
           options: {
-            emailRedirectTo: `${window.location.origin}/admin/dashboard`,
+            emailRedirectTo: `${window.location.origin}/profile`,
           },
         });
         if (err) throw err;
-        setInfo(t('admin.login.checkEmail'));
+        if (data.session) {
+          navigate('/profile', { replace: true });
+        } else {
+          setInfo(t('admin.login.checkEmail'));
+        }
       }
     } catch (err) {
       setError(err.message || t('admin.login.errorGeneric'));
@@ -85,19 +92,7 @@ export function AdminLogin() {
 
         <div className="w-full max-w-md lg:flex-1">
           <div className="rounded-3xl border border-line bg-canvas/90 p-8 shadow-soft backdrop-blur-md sm:p-10">
-            <div className="flex items-center justify-between gap-4">
-              <p className="text-sm font-semibold uppercase tracking-wider text-ink-muted">
-                {t('admin.login.panelTitle')}
-              </p>
-              <button
-                type="button"
-                onClick={toggleLang}
-                className="flex items-center gap-2 rounded-full border border-line bg-subtle/80 px-3 py-1.5 text-xs font-medium text-ink transition hover:bg-subtle"
-              >
-                <FaGlobe className="text-accent" aria-hidden />
-                {i18n.language.startsWith('en') ? 'SQ' : 'EN'}
-              </button>
-            </div>
+            <p className="text-sm font-semibold uppercase tracking-wider text-ink-muted">{t('admin.login.panelTitle')}</p>
 
             {!isSupabaseConfigured() && (
               <p className="mt-4 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-900">

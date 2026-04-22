@@ -1,9 +1,14 @@
-import { Features } from '../components/landing/Features';
 import { Hero } from '../components/landing/Hero';
-import { HowItWorks } from '../components/landing/HowItWorks';
-import { LevelsSection } from '../components/landing/LevelsSection';
-import { StatsStrip } from '../components/landing/StatsStrip';
-import { TracksSection } from '../components/landing/TracksSection';
+import {
+  LandingBuiltForSection,
+  LandingExampleCardSection,
+  LandingFinalCtaSection,
+  LandingHowSection,
+  LandingProblemSection,
+  LandingRepetitionSection,
+  LandingScienceSection,
+  LandingSolutionSection,
+} from '../components/landing/FlashcardLanding';
 import { Footer } from '../components/layout/Footer';
 import { Navbar } from '../components/layout/Navbar';
 
@@ -13,11 +18,14 @@ export default function Landing() {
       <Navbar />
       <main>
         <Hero />
-        <StatsStrip />
-        <Features />
-        <LevelsSection />
-        <TracksSection />
-        <HowItWorks />
+        <LandingProblemSection />
+        <LandingSolutionSection />
+        <LandingHowSection />
+        <LandingScienceSection />
+        <LandingExampleCardSection />
+        <LandingBuiltForSection />
+        <LandingRepetitionSection />
+        <LandingFinalCtaSection />
       </main>
       <Footer />
     </div>

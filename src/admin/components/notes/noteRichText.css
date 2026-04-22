@@ -1,0 +1,100 @@
+/* TipTap / ProseMirror — study notes editor */
+.note-rich-editor .ProseMirror {
+  min-height: 220px;
+  outline: none;
+}
+
+.note-rich-editor .ProseMirror p.is-editor-empty:first-child::before {
+  content: attr(data-placeholder);
+  float: left;
+  color: rgb(148 163 184);
+  pointer-events: none;
+  height: 0;
+}
+
+.note-rich-editor .ProseMirror h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0.75rem 0 0.5rem;
+  line-height: 1.25;
+}
+
+.note-rich-editor .ProseMirror h2 {
+  font-size: 1.25rem;
+  font-weight: 650;
+  margin: 0.65rem 0 0.4rem;
+  line-height: 1.3;
+}
+
+.note-rich-editor .ProseMirror h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0.5rem 0 0.35rem;
+  line-height: 1.35;
+}
+
+.note-rich-editor .ProseMirror p {
+  margin: 0.35rem 0;
+}
+
+.note-rich-editor .ProseMirror ul,
+.note-rich-editor .ProseMirror ol {
+  margin: 0.35rem 0;
+  padding-left: 1.35rem;
+}
+
+.note-rich-editor .ProseMirror blockquote {
+  margin: 0.5rem 0;
+  padding-left: 0.85rem;
+  border-left: 3px solid rgb(226 232 240);
+  color: rgb(71 85 105);
+}
+
+.note-rich-editor .ProseMirror hr {
+  margin: 1rem 0;
+  border: none;
+  border-top: 1px solid rgb(226 232 240);
+}
+
+.note-rich-editor .ProseMirror code {
+  font-size: 0.9em;
+  padding: 0.1em 0.35em;
+  border-radius: 0.25rem;
+  background: rgb(241 245 249);
+}
+
+.note-rich-editor .ProseMirror pre {
+  margin: 0.5rem 0;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  background: rgb(241 245 249);
+  overflow-x: auto;
+}
+
+.note-preview-html {
+  word-break: break-word;
+}
+
+.note-preview-html h1 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 0.25rem 0;
+}
+
+.note-preview-html h2,
+.note-preview-html h3 {
+  font-size: 0.95rem;
+  font-weight: 650;
+  margin: 0.2rem 0;
+}
+
+.note-preview-html p {
+  margin: 0.2rem 0;
+}
+
+.note-preview-html ul,
+.note-preview-html ol {
+  margin: 0.25rem 0;
+  padding-left: 1.1rem;
+  font-size: 0.875rem;
+}

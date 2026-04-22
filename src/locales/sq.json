@@ -1,31 +1,20 @@
 {
   "nav": {
-    "features": "Pse interks",
-    "levels": "Nivelet",
-    "tracks": "Shtigjet",
-    "how": "Si funksionon",
-    "cta": "Qasje e hershme",
+    "features": "Problemi",
+    "levels": "Kujtesë aktive",
+    "tracks": "Si funksionon",
+    "how": "Shkenca dhe fitimet",
+    "cta": "Filloni",
     "home": "Faqja kryesore",
     "practice": "Praktikë",
-    "submitQuestion": "Dërgo pyetje",
-    "adminLogin": "Hyrja e adminit",
-    "langEn": "Anglisht",
-    "langSq": "Shqip"
-  },
-  "hero": {
-    "badge": "Përgatitje për intervista për zhvillues",
-    "title": "Pyetje dhe përgjigje për intervista në teknologji —",
-    "titleAccent": "në një vend të qetë.",
-    "subtitle": "interks mbledh pyetje-përgjigje të kuruar për praktikantë deri në senior: frontend, backend dhe më shumë. Praktikoni me strukturë, mësoni më shpejt dhe hyni në intervista me vetëbesim.",
-    "primaryCta": "Bashkohu në listën e pritjes",
-    "secondaryCta": "Shiko si funksionon",
-    "practiceCta": "Praktiko pyetjet",
-    "footnote": "Krijuar për zhvillues që parapëlqejnë qartësinë para zhurmës."
+    "signIn": "Hyr",
+    "createAccount": "Krijo llogari",
+    "workspace": "Hapësira ime"
   },
   "learn": {
     "title": "Praktikë",
-    "subtitle": "Punoni pyetje në stilin e intervistave sipas nivelit tuaj. Zbuloni përgjigjen kur të jeni gati.",
-    "pickLevel": "Niveli",
+    "subtitle": "Rishikoni përmbajtjen që keni shtuar në hapësirën tuaj. Zbuloni përgjigjet vetëm kur të jeni gati.",
+    "pickLevel": "Tema",
     "question": "Pyetja",
     "answer": "Përgjigjja",
     "showAnswer": "Shfaq përgjigjen",
@@ -33,158 +22,110 @@
     "previous": "E mëparshmja",
     "next": "Tjetra",
     "progress": "Pyetja {{current}} nga {{total}}",
-    "empty": "Ende nuk ka pyetje për këtë nivel.",
+    "empty": "Ende nuk ka pyetje për këtë temë.",
     "loading": "Duke ngarkuar…",
     "loadError": "Ngarkimi dështoi. Provoni përsëri.",
     "keyboardHint": "Këshillë: përdorni ← → për të kaluar mes pyetjeve.",
-    "openCategory": "Hap këtë kategori",
-    "changeCategory": "Ndrysho kategorinë"
-  },
-  "submitQuestion": {
-    "badge": "Komuniteti",
-    "title": "Dërgo një pyetje",
-    "subtitle": "Dërgo pyetjen dhe përgjigjen për kategorinë që dëshiron. Admini e shqyrton dhe mund ta aprovojë për praktikë.",
-    "fullName": "Emri dhe mbiemri",
-    "phone": "Numri i telefonit",
-    "category": "Kategoria",
-    "question": "Pyetja",
-    "answer": "Përgjigjja",
-    "submit": "Dërgo për shqyrtim",
-    "backToLearn": "Kthehu te praktika",
-    "success": "Faleminderit. Dërgesa juaj është në pritje të shqyrtimit nga admini.",
-    "requiredError": "Ju lutem plotësoni të gjitha fushat.",
-    "saveError": "Nuk u dërgua tani. Ju lutem provoni përsëri."
-  },
-  "stats": {
-    "one": { "value": "1", "label": "qendër për P&P" },
-    "two": { "value": "4+", "label": "nivele përvoje" },
-    "three": { "value": "∞", "label": "tema për të eksploruar" }
-  },
-  "features": {
-    "title": "Gjithçka që ju duhet për t'u përgatitur",
-    "subtitle": "Një hapësirë e fokusuar për mësimin e intervistave teknike — jo postime të shpërndara në blog dhe fije të vjetruara.",
-    "items": {
-      "hub": {
-        "title": "Burim i vetëm i së vërtetës",
-        "body": "Mblidhni pyetje në stilin e intervistave dhe përgjigje të qarta në një rrjedhë — pa kaluar nga një skedë në tjetrën."
-      },
-      "levels": {
-        "title": "Rrugë sipas nivelit",
-        "body": "Nga praktikanti te seniori: përmbajtje e etiketuar sipas thellësisë që të studioni atë që përputhet me fazën tuaj."
-      },
-      "roles": {
-        "title": "Shtigje sipas rolit",
-        "body": "Frontend, backend dhe rrugë më të gjera të softuerit — zgjidhni një shteg dhe qëndroni të qëndrueshëm."
-      },
-      "patterns": {
-        "title": "Modele që do t'i ripërdorni",
-        "body": "Fokus në shpjegime që transferohen: struktura të të dhënave, API, bazat e sistemeve dhe si t'i përshkruani me zë të lartë."
-      }
-    }
-  },
-  "levels": {
-    "title": "Rrituni me fazën e karrierës",
-    "subtitle": "Qoftë në fillim apo duke udhëhequr sisteme, interks ju takon aty ku jeni.",
-    "intern": {
-      "title": "Praktikant",
-      "body": "Baza, intervistat e para dhe si të komunikoni atë që keni ndërtuar."
-    },
-    "junior": {
-      "title": "Junior",
-      "body": "Forconi CS bazë, debugging dhe punën e përditshme në ekip."
-    },
-    "mid": {
-      "title": "Mesatar",
-      "body": "Pronësi, kompromise, performancë dhe mendim më i qartë arkitektural."
-    },
-    "senior": {
-      "title": "Senior",
-      "body": "Sinjalet e lidershipit, dizajni kompleks, narrativat e mentorimit dhe përputhja me palët e interesuara."
-    }
-  },
-  "tracks": {
-    "title": "Shtigje që pasqyrojnë role reale",
-    "subtitle": "Zgjidhni një korsi — mund të kaloni kurdo që rruga juaj evolon.",
-    "frontend": {
-      "title": "Frontend",
-      "body": "Inxhinieri UI, performanca, aksesueshmëria, gjendja dhe koncepte të pavarura nga framework-u."
-    },
-    "backend": {
-      "title": "Backend",
-      "body": "Shërbime, baza të dhënash, baza të shkallëzimit, besueshmëria dhe dizajn pragmatik i API-ve."
-    },
-    "fullstack": {
-      "title": "Full-stack",
-      "body": "Mendim skaj-më-skaj: nga kufizimet e klientit te të dhënat dhe kompromiset e deployimit."
-    },
-    "software": {
-      "title": "Inxhinier softueri",
-      "body": "Cikle të përgjithshme intervistash me CS të fortë dhe zakone të mira zgjidhjeje problemesh."
-    }
-  },
-  "how": {
-    "title": "Si interks përshtatet me javën tuaj",
-    "subtitle": "Seanca të shkurtra, progres i qëndrueshëm — pa nevojë për cramming.",
-    "step1": {
-      "title": "Zgjidhni nivelin dhe shtegun",
-      "body": "Tregojini interks ku jeni dhe cilin rol synoni."
-    },
-    "step2": {
-      "title": "Praktikoni me P&P të strukturuara",
-      "body": "Punoni pyetje me përgjigje që shpjegojnë pse — jo vetëm çfarë."
-    },
-    "step3": {
-      "title": "Rishikoni dhe ruani",
-      "body": "Kthehuni te pikat e dobëta, lidhni modelet dhe ndërtoni kujtesë muskulare për intervista."
-    }
+    "flashcardHint": "Klikoni kartën për të kaluar nga pyetja te përgjigjja.",
+    "flipCardAria": "Kthe kartën: shfaq pyetjen ose përgjigjen",
+    "openCategory": "Hap këtë temë",
+    "changeCategory": "Ndrysho temën",
+    "manageLibrary": "Menaxho bibliotekën time",
+    "addInDashboard": "Shto pyetje në hapësirën tënde të punës"
   },
   "cta": {
-    "title": "Gati të përgatiteni me qëllim?",
-    "subtitle": "Lini emailin tuaj — do t'ju njoftojmë kur interks të hapet. Pa spam; çregjistrohuni kur të doni.",
+    "title": "Gati të zotëroni rrugën tuaj të mësimit?",
+    "subtitle": "Lini emailin për përditësime produkti — pa spam; çregjistrohuni kur të doni.",
     "placeholder": "ju@kompania.com",
     "button": "Njoftomë",
     "thanks": "Jeni në listë — do t'ju kontaktojmë.",
-    "note": "Kjo faqe hyrëse është një parashikim. Qasja në produkt vjen së shpejti."
+    "note": "Llogaritë janë aktive: krijoni hapësirën tani, ose bashkohuni në listë për versionet e ardhshme."
   },
   "footer": {
-    "tagline": "interks — pyetje dhe përgjigje për intervista për zhvillues, të organizuara me kujdes.",
+    "tagline": "interks — flashcards, kujtesë aktive dhe biblioteka juaj e intervistave.",
     "product": "Produkti",
     "company": "Kompania",
     "legal": "Ligjore",
     "linkFeatures": "Veçoritë",
     "linkLevels": "Nivelet",
     "linkTracks": "Shtigjet",
-    "linkPractice": "Praktikë",
+    "linkPractice": "Filloni tani",
     "linkAbout": "Rreth nesh",
     "linkCareers": "Karriera",
     "linkPrivacy": "Privatësia",
     "linkTerms": "Kushtet",
     "copy": "© {{year}} interks. Të gjitha të drejtat e rezervuara.",
-    "adminLink": "Administrimi"
+    "signIn": "Hyr"
   },
   "admin": {
     "login": {
-      "heroTitle": "Menaxhoni përmbajtjen e intervistave me siguri",
-      "heroSubtitle": "Shtoni dhe përpunoni pyetje dhe përgjigje në shqip dhe anglisht, të organizuara sipas nivelit.",
-      "panelTitle": "Qasja e administratorit",
+      "heroTitle": "Mirë se erdët në hapësirën tuaj",
+      "heroSubtitle": "Hyni për të menaxhuar kategoritë, kartat P&P dygjuhëshe, shënimet e studimit dhe seancat e praktikës.",
+      "panelTitle": "Llogaria",
       "email": "Email",
       "password": "Fjalëkalimi",
       "signIn": "Hyr",
       "signUp": "Krijo llogari",
       "working": "Ju lutem prisni…",
-      "checkEmail": "Kontrolloni emailin për të konfirmuar llogarinë, pastaj hyni.",
+      "checkEmail": "Kontrolloni emailin për të konfirmuar llogarinë, pastaj hyni dhe plotësoni profilin.",
       "errorGeneric": "Diçka shkoi keq. Provoni përsëri.",
       "configError": "Mungon konfigurimi i Supabase. Shtoni REACT_APP_SUPABASE_URL dhe REACT_APP_SUPABASE_ANON_KEY në .env.local.",
       "backHome": "Kthehu te faqja"
     },
+    "profile": {
+      "heroTitle": "Përfundoni profilin",
+      "heroSubtitle": "Zgjidhni si shfaqet emri juaj, pastaj vazhdoni në panelin privat.",
+      "panelTitle": "Profili juaj",
+      "displayName": "Emri i shfaqur",
+      "displayNamePlaceholder": "p.sh. Arben K.",
+      "displayNameHint": "Shfaqet në hapësirën tuaj të punës që të njihni sesionin.",
+      "continue": "Vazhdo në hapësirën e punës",
+      "nameRequired": "Ju lutem shkruani një emër të shfaqur.",
+      "loadErrorTitle": "Profili nuk u ngarkua",
+      "schemaHint": "Nëse sapo shtuat tabelën profiles, ekzekutoni pjesën e profiles në supabase/schema.sql në SQL Editor të Supabase, pastaj rifreskoni."
+    },
     "dashboard": {
-      "role": "Administrator",
-      "title": "Përmbajtja",
+      "role": "Hapësirë mësimi",
+      "title": "Biblioteka juaj",
       "logout": "Dil",
       "category": "Kategoritë",
-      "levels": "Nivelet",
+      "levels": "Tema",
       "questionsSection": "Pyetjet",
       "categoriesSection": "Kategoritë",
+      "notesSection": "Shënime studimi",
+      "notesEyebrow": "Referencë",
+      "notesTitle": "Shënime studimi",
+      "notesSubtitle": "Mblidhni përkufizime, lista kontrolli ose kujtesa pranë P&P. Vetëm ju e shihni këtë përmbajtje.",
+      "notesEmpty": "Ende nuk ka shënime. Shtoni kartën e parë të referencës për rishikim të shpejtë.",
+      "addNote": "Shto shënim",
+      "newNote": "Shënim i ri",
+      "editNote": "Ndrysho shënimin",
+      "noteTitle": "Titulli",
+      "noteBody": "Përmbajtja",
+      "noteBodyPlaceholder": "Shkruani me tituj, lista, ngjyra…",
+      "noteEditorIntro": "Përdorni shiritin e mjeteve për formatim; ruani në hapësirë ose shkarkoni si HTML.",
+      "noteEditorToolbar": "Mjetet e formatimit",
+      "noteTbBold": "Trash",
+      "noteTbItalic": "Kursiv",
+      "noteTbUnderline": "Nënvizim",
+      "noteTbStrike": "Hequr",
+      "noteTbH1": "Titull 1",
+      "noteTbH2": "Titull 2",
+      "noteTbH3": "Titull 3",
+      "noteTbParagraph": "Paragraf",
+      "noteTbBullet": "Lista me pika",
+      "noteTbOrdered": "Lista e numëruar",
+      "noteTbQuote": "Citim",
+      "noteTbCode": "Kod",
+      "noteTbColor": "Ngjyra e tekstit",
+      "noteTbClearColor": "Hiq ngjyrën",
+      "noteTbUndo": "Zhbëj",
+      "noteTbRedo": "Ribëj",
+      "noteDownloadHtml": "Shkarko HTML",
+      "notesLoading": "Duke ngarkuar shënimet…",
+      "noteNoBody": "Ende pa tekst përmbajtjeje.",
+      "noteTitleRequired": "Ju lutem shkruani një titull për këtë shënim.",
+      "confirmDeleteNote": "Ta fshij përgjithmonë këtë shënim?",
       "addQuestion": "Shto pyetje",
       "addCategory": "Shto kategori",
       "editCategory": "Ndrysho kategorinë",
@@ -199,48 +140,188 @@
       "questionEn": "Pyetja (anglisht)",
       "categorySq": "Kategoria (shqip)",
       "categoryEn": "Kategoria (anglisht)",
+      "categoryName": "Emri i kategorisë",
       "categorySlug": "Slug i kategorisë (URL)",
       "answerSq": "Përgjigjja (shqip)",
       "answerEn": "Përgjigjja (anglisht)",
+      "questionField": "Pyetja",
+      "answerField": "Përgjigjja",
       "sortOrder": "Renditja",
-      "empty": "Ende nuk ka pyetje për këtë nivel.",
+      "empty": "Ende nuk ka pyetje për këtë temë.",
       "confirmDelete": "Të fshihet përgjithmonë kjo pyetje?",
       "saving": "Duke ruajtur…",
       "saveError": "Nuk u ruajt. Kontrolloni lidhjen dhe politikat e Supabase.",
-      "categoryFormError": "Plotësoni emrat e kategorisë dhe një slug valid (shembull: intern-react).",
+      "categoryFormError": "Shkruani emrin e kategorisë.",
       "confirmDeleteCategory": "Ta fshij kategorinë \"{{name}}\"? Të gjitha pyetjet brenda saj do fshihen gjithashtu.",
       "closeDialog": "Mbyll",
       "questionEditorEyebrow": "Redaktori",
-      "questionEditorSubtitle": "Pyetja dhe përgjigjja në shqip janë të detyrueshme. Anglishtja është opsionale—shtojeni kur doni të dy gjuhët në faqen e praktikës.",
       "bilingualPair": "Shqip i detyrueshëm",
       "optional": "Opsionale",
       "answerGuidance": "Shpjegim i qartë, në stilin e intervistës",
       "placeholderQuestion": "Shkruani pyetjen e intervistës…",
       "placeholderAnswer": "Shkruani një përgjigje të strukturuar dhe të shkurtër…",
       "sortOrderHint": "Numrat më të vegjël shfaqen më sipër në listë.",
-      "questionEditorFooter": "Shtypni Esc për të anuluar. Fushat në shqip duhen plotësuar për të ruajtur.",
-      "noCategories": "Nuk u gjetën kategori. Ekzekutoni supabase/schema.sql në SQL Editor të Supabase.",
+      "questionEditorFooter": "Shtypni Esc për të anuluar. Pyetja dhe përgjigjja duhen plotësuar për të ruajtur.",
+      "questionEditorFooterNoSort": "Shtypni Esc për të anuluar. Renditja caktohet automatikisht.",
+      "noCategories": "Ende nuk ka tema. Krijoni një kategori te skeda Kategoritë, pastaj shtoni pyetje.",
       "backHome": "Kthehu te faqja",
-      "previewSq": "Parapamje SQ",
+      "previewSq": "Parapamje",
       "previewEn": "Parapamje EN",
+      "previewQuestion": "Pyetja",
+      "previewAnswer": "Përgjigjja",
+      "flashcardHint": "Klikoni kartën për të kaluar nga pyetja te përgjigjja.",
+      "flashcardFlipAria": "Kthe kartën: shfaq pyetjen ose përgjigjen",
       "sectionQuestions": "Pyetjet",
       "sectionAnswers": "Përgjigjet",
       "showAnswers": "Shfaq përgjigjet",
       "hideAnswers": "Fshih përgjigjet",
-      "inThisLevel": "{{count}} në këtë nivel",
-      "submissions": "Dërgesa nga përdoruesit",
-      "submissionsPending": "Në pritje",
-      "submissionsApproved": "Të aprovuara",
-      "submissionsDeclined": "Të refuzuara",
-      "noSubmissions": "Nuk ka dërgesa në pritje për momentin.",
-      "noApprovedSubmissions": "Ende nuk ka dërgesa të aprovuara.",
-      "noDeclinedSubmissions": "Ende nuk ka dërgesa të refuzuara.",
-      "submittedAt": "Dërguar {{date}}",
-      "reviewedAt": "Shqyrtuar {{date}}",
-      "statusApproved": "E aprovuar",
-      "statusDeclined": "E refuzuar",
-      "approve": "Aprovo",
-      "decline": "Refuzo"
+      "inThisLevel": "{{count}} në këtë temë",
+      "questionsTableTitle": "Të gjitha pyetjet",
+      "questionsTableSubtitle": "Shikoni listën; përgjigjet janë të shkurtra. Për karta, filloni mësimin.",
+      "questionsTableColNr": "Nr",
+      "questionsTableColQuestion": "Pyetja",
+      "questionsTableColAnswer": "Përgjigjja (parapamje)",
+      "questionsTableColActions": "Veprime",
+      "startLearning": "Mëso",
+      "startLearningSession": "Fillo mësimin",
+      "studyEyebrow": "Praktikë",
+      "studyTitle": "Mësimi me karta",
+      "studyProgress": "Karta {{current}} nga {{total}}",
+      "studyPrevious": "E mëparshmja",
+      "studyNext": "Tjetra",
+      "studyKeyboardHint": "← → për karta; Esc për të mbyllur."
+    }
+  },
+  "landing": {
+    "hero": {
+      "badge": "Përgatitje që mbetet në mendje",
+      "title": "Mësoni intervistat më shpejt me flashcards dhe kujtesë aktive",
+      "subtitle": "Resht së lexuari pasivisht. Filloni të mbani mend. Stërviteni si performuesit e lartë — me teknika të provuara që funksionojnë edhe nën presion.",
+      "ctaStart": "Filloni të mësoni tani",
+      "secondary": "Shihni metodën",
+      "footnote": "Pas regjistrimit, ndërtoni kartat tuaja në hapësirën e punës — pastaj praktikoni me kujtesë aktive, jo me scroll pasiv."
+    },
+    "problem": {
+      "eyebrow": "Problemi",
+      "title": "Pse dështon studimi tradicional",
+      "intro": "Shumica e kandidatëve:",
+      "bullets": [
+        "Rilexojnë shënimet",
+        "Shikojnë tutoriale",
+        "Theksojnë gjithçka"
+      ],
+      "freeze": "Por gjatë intervistave… nginjëzin.",
+      "recallLine": "Sepse njohja nga pamja nuk është rikthim nga kujtesa.",
+      "need1": "Nuk ju duhet të shihni përgjigjen.",
+      "need2": "Ju duhet ta prodhoni atë — menjëherë."
+    },
+    "solution": {
+      "title": "Zgjidhja: kujtesë aktive + flashcards",
+      "lead": "Kujtesa aktive e detyron trurin të rikthejë informacionin pa e parë atë.",
+      "flashIntro": "Flashcards e bëjnë këtë sistem:",
+      "flashSteps": [
+        "Pyetja përpara",
+        "Përgjigjja prapa",
+        "Përsëritni derisa të bëhet automatike"
+      ],
+      "closing": "Kështu ndërtoni kujtesë të vërtetë, jo vetëbesim të rremë.",
+      "cardPreview": "Parapamje karte",
+      "questionShort": "Cili është ndryshimi mes state dhe props në React?",
+      "flipHint": "Kthejeni kartën kur keni një përgjigje në mendje."
+    },
+    "how": {
+      "eyebrow": "Rrjedha juaj",
+      "title": "Si funksionon",
+      "subtitle": "Nga pyetjet reale te kujtesa automatike.",
+      "step1": {
+        "title": "Merrni pyetje reale interviste",
+        "body": "Praktikoni me pyetje frontend, backend dhe system design — ose shkruani tuajat në hapësirën e punës."
+      },
+      "step2": {
+        "title": "Shndërroni ato në flashcards",
+        "body": "Çdo pyetje bëhet sfidë që truri duhet ta zgjidhë para se të shihni përgjigjen."
+      },
+      "step3": {
+        "title": "Riktheni nga mendja, mos rilexoni",
+        "body": "Provoni të përgjigjeni para se të ktheni kartën. Ky rikthim ndërton kujtesë të qëndrueshme."
+      },
+      "step4": {
+        "title": "Gjurmoni zonat e dobëta",
+        "body": "Fokusohuni te ajo që ende nuk e përgjigjni lehtë dhe kthehuni derisa të ndihet e lehtë."
+      },
+      "step5": {
+        "title": "Përsëritni deri në mjeshtëri",
+        "body": "Praktikë në stilin e përsëritjes me hapësirë — kartat e vështira kthehen më shpesh derisa të nguliten."
+      }
+    },
+    "science": {
+      "title": "Pse funksionon (e mbështetur nga shkenca)",
+      "bullets": [
+        "Kujtesa aktive forcon lidhjet nervore",
+        "Përsëritja përmirëson kujtesën afatgjatë",
+        "Të testosh veten është më efikase se të rishikosh"
+      ],
+      "usedByLead": "E njëjta metodë e përdorur nga:",
+      "usedBy": [
+        "Studentët më të mirë",
+        "Profesionistët mjekësorë",
+        "Inxhinierët me performancë të lartë"
+      ]
+    },
+    "gain": {
+      "title": "Çfarë fitoni",
+      "bullets": [
+        "Rikthim më i shpejtë gjatë intervistave",
+        "Kuptim më i thellë i koncepteve",
+        "Vetëbesim nën presion",
+        "Sistem mësimi i strukturuar që e kontrolloni ju"
+      ],
+      "closing": "Jo më “e dija dje këtë…”"
+    },
+    "example": {
+      "title": "Shembull flashcard",
+      "questionLabel": "Pyetja",
+      "question": "Cili është ndryshimi mes state dhe props në React?",
+      "hint": "Mendoni para se ta ktheni…",
+      "answerLabel": "Përgjigjja",
+      "answer": "State menaxhohet brenda një komponenti dhe mund të ndryshojë me kohën, ndërsa props kalojnë nga prindi te fëmija dhe janë të pandryshueshme për fëmijën.",
+      "questionShort": "State vs props në React?",
+      "flipHint": "Provoni të përgjigjeni me zë para se të lexoni anën e pasme."
+    },
+    "built": {
+      "title": "E ndërtuar për zhvillues",
+      "subtitle": "Gjithçka e strukturuar për intervista reale, jo teori.",
+      "frontend": {
+        "title": "Frontend",
+        "body": "React, JavaScript, CSS"
+      },
+      "backend": {
+        "title": "Backend",
+        "body": ".NET, API, baza të dhënash"
+      },
+      "system": {
+        "title": "Dizajn sistemi",
+        "body": "Kompromiset, shkallëzimi dhe si të flisni për arkitekturën nën presion."
+      },
+      "behavioral": {
+        "title": "Pyetje sjelljesh",
+        "body": "Histori STAR, bashkëpunim dhe sinjale lidershipi — me fjalët tuaja."
+      }
+    },
+    "repetition": {
+      "title": "Sistem i mençur përsëritjeje",
+      "lines": [
+        "Pyetjet e lehta shfaqen më rrallë",
+        "Pyetjet e vështira përsëriten më shpesh",
+        "Fokusoheni vetëm aty ku ka rëndësi"
+      ],
+      "footer": "Si të kishit një algoritëm personal mësimi."
+    },
+    "finalCta": {
+      "title": "Gati të reshtni së harruari dhe të filloni të mbani mend?",
+      "subtitle": "Stërvituni me të njëjtën metodë që përdorin performuesit e lartë.",
+      "lead": "Filloni përgatitjen për intervista në mënyrë të mençur.",
+      "button": "Krijoni llogari dhe bëni pyetjet tuaja"
     }
   }
 }
