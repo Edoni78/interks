@@ -42,7 +42,7 @@
     "note": "Llogaritë janë aktive: krijoni hapësirën tani, ose bashkohuni në listë për versionet e ardhshme."
   },
   "footer": {
-    "tagline": "interks — flashcards, kujtesë aktive dhe biblioteka juaj e intervistave.",
+    "tagline": "interks — flashcards, kujtesë aktive dhe biblioteka juaj e mësimit.",
     "product": "Produkti",
     "company": "Kompania",
     "legal": "Ligjore",
@@ -166,8 +166,8 @@
       "questionEditorEyebrow": "Redaktori",
       "bilingualPair": "Shqip i detyrueshëm",
       "optional": "Opsionale",
-      "answerGuidance": "Shpjegim i qartë, në stilin e intervistës",
-      "placeholderQuestion": "Shkruani pyetjen e intervistës…",
+      "answerGuidance": "Shpjegim i qartë, në stilin e një përgjigjeje të shkurtër",
+      "placeholderQuestion": "Shkruani pyetjen tuaj…",
       "placeholderAnswer": "Shkruani një përgjigje të strukturuar dhe të shkurtër…",
       "sortOrderHint": "Numrat më të vegjël shfaqen më sipër në listë.",
       "questionEditorFooter": "Shtypni Esc për të anuluar. Pyetja dhe përgjigjja duhen plotësuar për të ruajtur.",
@@ -193,18 +193,77 @@
       "questionsTableColActions": "Veprime",
       "startLearning": "Mëso",
       "startLearningSession": "Fillo mësimin",
-      "studyEyebrow": "Praktikë",
-      "studyTitle": "Mësimi me karta",
+      "studyEyebrow": "Deck kartash",
+      "studyTitle": "Sesioni i mësimit",
+      "studyDeckMeta": "{{count}} karta në këtë deck",
+      "studySessionActive": "Sesioni është aktiv derisa të përfundoni deck-un.",
+      "studyFinishDeck": "Përfundo deck-un",
+      "studySessionCompleteTitle": "Sesioni përfundoi",
+      "studySessionCompleteBody": "Keni përfunduar të gjitha {{count}} kartat e këtij deck-u. Dëshironi të rifilloni?",
+      "studySessionAgain": "Po, rifillo",
+      "studySessionClose": "Jo, mbyll",
+      "studyShuffleDeckLabel": "Përzie kartat para rifillimit",
+      "studyDeckLoading": "Duke përgatitur deck-un…",
       "studyProgress": "Karta {{current}} nga {{total}}",
       "studyPrevious": "E mëparshmja",
       "studyNext": "Tjetra",
-      "studyKeyboardHint": "← → për karta; Esc për të mbyllur."
+      "studyKeyboardHint": "← → për karta; Esc për të mbyllur.",
+      "questionKindLabel": "Lloji i pyetjes",
+      "questionKindOpen": "Hapët (karta)",
+      "questionKindOptions": "Pyetje me opsione",
+      "mcOptionsLabel": "Opsionet (të gjitha të detyrueshme)",
+      "mcCorrectHint": "Zgjidhni rrethin pranë përgjigjes së saktë.",
+      "mcAddOption": "Shto opsion",
+      "mcRemoveOption": "Hiq",
+      "mcValidationOptions": "Plotësoni të paktën dy opsione të plota.",
+      "mcValidationCorrect": "Tregoni cili opsion është i saktë.",
+      "questionTextRequired": "Shkruani tekstin e pyetjes.",
+      "answerRequired": "Shkruani përgjigjen.",
+      "optionalExplanationMc": "Shpjegim (opsional, pas zgjedhjes së opsionit)",
+      "placeholderExplanationMc": "Pse është e saktë kjo përgjigje…",
+      "studyOptionsHint": "Zgjidhni një opsion — do të shihni menjëherë nëse është i saktë.",
+      "studyOptionsPick": "Zgjidhni një përgjigje",
+      "studyOptionsCorrectTitle": "Saktë.",
+      "studyOptionsWrongTitle": "Jo e saktë.",
+      "studyOptionsCorrectWas": "Përgjigja e saktë ishte: {{letter}} — {{text}}",
+      "studyOptionsExplanation": "Shpjegim",
+      "studyOptionsInvalid": "Kjo pyetje nuk ka opsione të vlefshme. Ndryshojeni te redaktori.",
+      "answerPreviewOptions": "Opsione · {{text}}",
+      "progressSection": "Progresi",
+      "progressEyebrow": "Analitikë",
+      "progressTitle": "Progresi i mësimit",
+      "progressSubtitle": "Shihni aktivitetin sipas ditëve: kthime të kartave (pyetje të hapura) dhe përgjigje me zgjedhje. Filtroni sipas temës ose shihni të gjitha.",
+      "progressRange7": "7 ditë",
+      "progressRange14": "14 ditë",
+      "progressRange30": "30 ditë",
+      "progressFilterAll": "Të gjitha temat",
+      "progressFilterTopic": "Tema",
+      "progressLoading": "Duke ngarkuar statistikat…",
+      "progressLoadError": "Nuk u ngarkuan të dhënat e progresit.",
+      "progressRefresh": "Rifresko",
+      "progressSummaryTotal": "Veprime gjithsej",
+      "progressSummaryCardFlips": "Karta të zbuluara",
+      "progressSummaryOptionsAttempts": "Provat (me opsione)",
+      "progressSummaryOptionsAccuracy": "Saktësia (me opsione)",
+      "progressLegendCard": "Karta",
+      "progressLegendOptionsOk": "Opsion i saktë",
+      "progressLegendOptionsBad": "Opsion i gabuar",
+      "progressChartTitle": "Aktiviteti sipas ditës (lokal)",
+      "progressTableTitle": "Detajet sipas ditës",
+      "progressTableDate": "Dita",
+      "progressTableCardReveals": "Karta",
+      "progressTableOptionsCorrect": "Opsion i saktë",
+      "progressTableOptionsWrong": "Opsion i gabuar",
+      "progressTableTotal": "Gjithsej",
+      "progressEmptyTitle": "Ende pa të dhëna progresi",
+      "progressEmptyBody": "Filloni një sesion nga Pyetjet: zbuloni përgjigjen e kartës ose përgjigjuni pyetjeve me opsione. Statistikat shfaqen këtu automatikisht.",
+      "progressStreak": "Seri: {{count}} ditë radhazi me aktivitet (në intervalin e zgjedhur)"
     }
   },
   "landing": {
     "hero": {
       "badge": "Përgatitje që mbetet në mendje",
-      "title": "Mësoni intervistat më shpejt me flashcards dhe kujtesë aktive",
+      "title": "Mësoni më shpejt me flashcards dhe kujtesë aktive",
       "subtitle": "Resht së lexuari pasivisht. Filloni të mbani mend. Stërviteni si performuesit e lartë — me teknika të provuara që funksionojnë edhe nën presion.",
       "ctaStart": "Filloni të mësoni tani",
       "secondary": "Shihni metodën",
@@ -219,7 +278,7 @@
         "Shikojnë tutoriale",
         "Theksojnë gjithçka"
       ],
-      "freeze": "Por gjatë intervistave… nginjëzin.",
+      "freeze": "Por kur duhet ta nxirrni nga mendja… nginjëzin.",
       "recallLine": "Sepse njohja nga pamja nuk është rikthim nga kujtesa.",
       "need1": "Nuk ju duhet të shihni përgjigjen.",
       "need2": "Ju duhet ta prodhoni atë — menjëherë."
@@ -243,7 +302,7 @@
       "title": "Si funksionon",
       "subtitle": "Nga pyetjet reale te kujtesa automatike.",
       "step1": {
-        "title": "Merrni pyetje reale interviste",
+        "title": "Merrni pyetje nga bota reale",
         "body": "Praktikoni me pyetje frontend, backend dhe system design — ose shkruani tuajat në hapësirën e punës."
       },
       "step2": {
@@ -280,7 +339,7 @@
     "gain": {
       "title": "Çfarë fitoni",
       "bullets": [
-        "Rikthim më i shpejtë gjatë intervistave",
+        "Rikthim më i shpejtë kur ju duhet në provim ose në punë",
         "Kuptim më i thellë i koncepteve",
         "Vetëbesim nën presion",
         "Sistem mësimi i strukturuar që e kontrolloni ju"
@@ -299,7 +358,7 @@
     },
     "built": {
       "title": "E ndërtuar për zhvillues",
-      "subtitle": "Gjithçka e strukturuar për intervista reale, jo teori.",
+      "subtitle": "Gjithçka e strukturuar për praktikë të vërtetë, jo vetëm teori.",
       "frontend": {
         "title": "Frontend",
         "body": "React, JavaScript, CSS"
@@ -329,7 +388,7 @@
     "finalCta": {
       "title": "Gati të reshtni së harruari dhe të filloni të mbani mend?",
       "subtitle": "Stërvituni me të njëjtën metodë që përdorin performuesit e lartë.",
-      "lead": "Filloni përgatitjen për intervista në mënyrë të mençur.",
+      "lead": "Filloni mësimin në mënyrë të mençur.",
       "button": "Krijoni llogari dhe bëni pyetjet tuaja"
     }
   }

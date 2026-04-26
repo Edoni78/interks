@@ -1,9 +1,21 @@
 import { FaBook, FaPen, FaTrash } from 'react-icons/fa';
+import { parseMcOptions } from '../../lib/questionMc';
 
 function snippet(text, max = 96) {
   const s = (text || '').trim().replace(/\s+/g, ' ');
   if (!s) return '—';
   return s.length <= max ? s : `${s.slice(0, max)}…`;
+}
+
+function answerPreview(q, t) {
+  if (q.question_kind === 'multiple_choice') {
+    const opts = parseMcOptions(q.mc_options);
+    const idx = Number(q.mc_correct_index);
+    const line =
+      Number.isFinite(idx) && idx >= 0 && idx < opts.length ? String(opts[idx] || '').trim() : (opts[0] || '').trim();
+    return t('admin.dashboard.answerPreviewOptions', { text: snippet(line || q.answer_sq, 96) });
+  }
+  return snippet(q.answer_sq, 120);
 }
 
 export function AdminQuestionsTable({ questions, t, onStartStudy, onEdit, onDelete }) {
@@ -31,7 +43,7 @@ export function AdminQuestionsTable({ questions, t, onStartStudy, onEdit, onDele
                   <span className="line-clamp-3 whitespace-pre-wrap sm:line-clamp-2">{q.question_sq?.trim() || '—'}</span>
                 </td>
                 <td className="hidden max-w-xs px-3 py-3 align-top text-ink-muted sm:table-cell sm:px-4">
-                  <span className="line-clamp-2">{snippet(q.answer_sq, 120)}</span>
+                  <span className="line-clamp-2">{answerPreview(q, t)}</span>
                 </td>
                 <td className="px-3 py-3 align-top sm:px-4">
                   <div className="flex flex-wrap justify-end gap-1.5 sm:gap-2">

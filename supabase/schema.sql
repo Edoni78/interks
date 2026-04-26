@@ -82,9 +82,13 @@ create table if not exists public.questions (
   question_en text not null default '',
   answer_sq text not null default '',
   answer_en text not null default '',
+  question_kind text not null default 'open',
+  mc_options jsonb not null default '[]'::jsonb,
+  mc_correct_index int null,
   sort_order int not null default 0,
   created_at timestamptz not null default now(),
-  updated_at timestamptz not null default now()
+  updated_at timestamptz not null default now(),
+  constraint questions_question_kind_check check (question_kind in ('open', 'multiple_choice'))
 );
 
 create index if not exists questions_category_sort_idx
@@ -271,3 +275,93 @@ create policy "study_notes_delete_own"
   for delete
   to authenticated
   using (user_id = auth.uid());
+
+-- Study progress events (card reveals + multiple-choice outcomes). Added after 26.04.2026 for dashboard analytics.
+create table if not exists public.study_progress_events (
+  id uuid primary key default gen_random_uuid(),
+  user_id uuid not null references auth.users (id) on delete cascade,
+  category_id uuid not null references public.categories (id) on delete cascade,
+  question_id uuid not null references public.questions (id) on delete cascade,
+  event_kind text not null,
+  created_at timestamptz not null default now(),
+  constraint study_progress_events_kind_check check (event_kind in ('card_reveal', 'mc_correct', 'mc_incorrect'))
+);
+
+create index if not exists study_progress_events_user_created_idx
+  on public.study_progress_events (user_id, created_at desc);
+
+create index if not exists study_progress_events_user_category_created_idx
+  on public.study_progress_events (user_id, category_id, created_at desc);
+
+alter table public.study_progress_events enable row level security;
+
+drop policy if exists "study_progress_events_select_own" on public.study_progress_events;
+create policy "study_progress_events_select_own"
+  on public.study_progress_events
+  for select
+  to authenticated
+  using (user_id = auth.uid());
+
+drop policy if exists "study_progress_events_insert_own" on public.study_progress_events;
+create policy "study_progress_events_insert_own"
+  on public.study_progress_events
+  for insert
+  to authenticated
+  with check (
+    user_id = auth.uid()
+    and exists (
+      select 1 from public.categories c
+      where c.id = study_progress_events.category_id and c.user_id = auth.uid()
+    )
+    and exists (
+      select 1 from public.questions q
+      join public.categories c on c.id = q.category_id
+      where q.id = study_progress_events.question_id and c.user_id = auth.uid()
+    )
+  );
+
+-- 26.04.2026 — migration for databases created before multiple-choice columns existed.
+-- Added after 26.04.2026: question_kind ('open' | 'multiple_choice'), mc_options (JSON array of strings), mc_correct_index (0-based).
+alter table public.questions add column if not exists question_kind text not null default 'open';
+alter table public.questions add column if not exists mc_options jsonb not null default '[]'::jsonb;
+alter table public.questions add column if not exists mc_correct_index int null;
+alter table public.questions drop constraint if exists questions_question_kind_check;
+alter table public.questions add constraint questions_question_kind_check
+  check (question_kind in ('open', 'multiple_choice'));
+
+-- Deck study sessions (one row per run through a topic’s deck). Added from line 334+ (after 26.04.2026 migrations).
+create table if not exists public.study_sessions (
+  id uuid primary key default gen_random_uuid(),
+  user_id uuid not null references auth.users (id) on delete cascade,
+  category_id uuid not null references public.categories (id) on delete cascade,
+  started_at timestamptz not null default now(),
+  finished_at timestamptz null,
+  cards_total int not null default 0,
+  was_shuffled boolean not null default false
+);
+
+create index if not exists study_sessions_user_started_idx on public.study_sessions (user_id, started_at desc);
+create index if not exists study_sessions_user_category_idx on public.study_sessions (user_id, category_id, started_at desc);
+
+alter table public.study_sessions enable row level security;
+
+drop policy if exists "study_sessions_select_own" on public.study_sessions;
+create policy "study_sessions_select_own"
+  on public.study_sessions for select to authenticated using (user_id = auth.uid());
+
+drop policy if exists "study_sessions_insert_own" on public.study_sessions;
+create policy "study_sessions_insert_own"
+  on public.study_sessions for insert to authenticated
+  with check (
+    user_id = auth.uid()
+    and exists (
+      select 1 from public.categories c
+      where c.id = study_sessions.category_id and c.user_id = auth.uid()
+    )
+  );
+
+drop policy if exists "study_sessions_update_own" on public.study_sessions;
+create policy "study_sessions_update_own"
+  on public.study_sessions for update to authenticated
+  using (user_id = auth.uid())
+  with check (user_id = auth.uid());

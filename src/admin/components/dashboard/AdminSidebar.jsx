@@ -1,10 +1,9 @@
-import { FaClipboardList, FaFolderOpen, FaLayerGroup, FaSignOutAlt, FaStickyNote } from 'react-icons/fa';
+import { FaChartLine, FaClipboardList, FaFolderOpen, FaLayerGroup, FaSignOutAlt, FaStickyNote } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import logo from '../../../assets/logo.png';
 
 export function AdminSidebar({
   t,
-  activeSection,
   setActiveSection,
   categories,
   categoryId,
@@ -14,9 +13,10 @@ export function AdminSidebar({
   viewingQuestions,
   viewingCategories,
   viewingNotes,
+  viewingProgress,
 }) {
   return (
-    <aside className="hidden w-64 shrink-0 flex-col border-r border-line bg-canvas lg:flex">
+    <aside className="flex w-56 shrink-0 flex-col overflow-y-auto border-r border-line bg-canvas sm:w-64">
       <div className="border-b border-line px-5 py-6">
         <Link to="/" className="flex items-center gap-2 font-display text-lg font-semibold text-ink">
           <img src={logo} alt="" className="h-8 w-8 object-contain" width={32} height={32} />
@@ -62,7 +62,19 @@ export function AdminSidebar({
           <FaStickyNote className="text-accent" aria-hidden />
           {t('admin.dashboard.notesSection')}
         </button>
-        {viewingQuestions && (
+        <button
+          type="button"
+          onClick={() => setActiveSection('progress')}
+          className={`flex w-full items-center gap-3 rounded-2xl px-3 py-3 text-left text-sm font-semibold transition ${
+            viewingProgress
+              ? 'border border-accent/30 bg-accent-soft/70 text-ink shadow-sm'
+              : 'text-ink-muted hover:bg-subtle hover:text-ink'
+          }`}
+        >
+          <FaChartLine className="text-accent" aria-hidden />
+          {t('admin.dashboard.progressSection')}
+        </button>
+        {categories.length > 0 ? (
           <>
             <p className="px-3 pt-3 text-[10px] font-semibold uppercase tracking-wider text-ink-muted">
               {t('admin.dashboard.levels')}
@@ -71,7 +83,10 @@ export function AdminSidebar({
               <button
                 key={cat.id}
                 type="button"
-                onClick={() => setCategoryId(cat.id)}
+                onClick={() => {
+                  setActiveSection('questions');
+                  setCategoryId(cat.id);
+                }}
                 className={`flex w-full items-center gap-3 rounded-2xl px-3 py-3 text-left text-sm font-semibold transition ${
                   categoryId === cat.id
                     ? 'border border-accent/30 bg-accent-soft/70 text-ink shadow-sm'
@@ -83,7 +98,7 @@ export function AdminSidebar({
               </button>
             ))}
           </>
-        )}
+        ) : null}
       </nav>
       <div className="border-t border-line p-3">
         <button

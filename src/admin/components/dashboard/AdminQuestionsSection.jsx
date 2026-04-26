@@ -94,6 +94,7 @@ export function AdminQuestionsSection({
         open={studyOpen}
         questions={questions}
         startIndex={studyStartIndex}
+        categoryId={categoryId}
         categoryLabel={categoryLabel}
         t={t}
         onClose={() => setStudyOpen(false)}

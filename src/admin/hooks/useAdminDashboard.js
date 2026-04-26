@@ -60,6 +60,7 @@ export function useAdminDashboard() {
   const viewingQuestions = activeSection === 'questions';
   const viewingCategories = activeSection === 'categories';
   const viewingNotes = activeSection === 'notes';
+  const viewingProgress = activeSection === 'progress';
 
   const loadCategories = useCallback(async () => {
     if (!isSupabaseConfigured()) {
@@ -146,31 +147,34 @@ export function useAdminDashboard() {
     try {
       const qSq = payload.question_sq;
       const aSq = payload.answer_sq;
+      const questionKind = payload.question_kind === 'multiple_choice' ? 'multiple_choice' : 'open';
+      const mcOptions = questionKind === 'multiple_choice' && Array.isArray(payload.mc_options) ? payload.mc_options : [];
+      const mcCorrectIndex =
+        questionKind === 'multiple_choice' && Number.isFinite(Number(payload.mc_correct_index))
+          ? Number(payload.mc_correct_index)
+          : null;
       const nextSortOrder = !payload.id
         ? questions.reduce((m, q) => Math.max(m, Number(q.sort_order) || 0), -1) + 1
         : Number.isFinite(Number(payload.sort_order))
           ? Number(payload.sort_order)
           : Number(questions.find((q) => q.id === payload.id)?.sort_order) || 0;
+      const rowBase = {
+        question_sq: qSq,
+        question_en: qSq,
+        answer_sq: aSq,
+        answer_en: aSq,
+        question_kind: questionKind,
+        mc_options: mcOptions,
+        mc_correct_index: mcCorrectIndex,
+        sort_order: nextSortOrder,
+      };
       if (payload.id) {
-        const { error } = await supabase
-          .from('questions')
-          .update({
-            question_sq: qSq,
-            question_en: qSq,
-            answer_sq: aSq,
-            answer_en: aSq,
-            sort_order: nextSortOrder,
-          })
-          .eq('id', payload.id);
+        const { error } = await supabase.from('questions').update(rowBase).eq('id', payload.id);
         if (error) throw error;
       } else {
         const { error } = await supabase.from('questions').insert({
           category_id: payload.category_id,
-          question_sq: qSq,
-          question_en: qSq,
-          answer_sq: aSq,
-          answer_en: aSq,
-          sort_order: nextSortOrder,
+          ...rowBase,
         });
         if (error) throw error;
       }
@@ -389,6 +393,7 @@ export function useAdminDashboard() {
     viewingQuestions,
     viewingCategories,
     viewingNotes,
+    viewingProgress,
     signOut,
     onSaveQuestion,
     onDelete,

@@ -5,6 +5,7 @@ import { AdminDashboardBackground } from './components/dashboard/AdminDashboardB
 import { AdminDashboardHeader } from './components/dashboard/AdminDashboardHeader';
 import { AdminNotesSection } from './components/dashboard/AdminNotesSection';
 import { AdminQuestionsSection } from './components/dashboard/AdminQuestionsSection';
+import { AdminProgressSection } from './components/dashboard/AdminProgressSection';
 import { AdminSidebar } from './components/dashboard/AdminSidebar';
 
 export function AdminDashboard() {
@@ -15,7 +16,6 @@ export function AdminDashboard() {
       <div className="flex min-h-screen w-full min-w-0">
         <AdminSidebar
           t={d.t}
-          activeSection={d.activeSection}
           setActiveSection={d.setActiveSection}
           categories={d.categories}
           categoryId={d.categoryId}
@@ -25,32 +25,33 @@ export function AdminDashboard() {
           viewingQuestions={d.viewingQuestions}
           viewingCategories={d.viewingCategories}
           viewingNotes={d.viewingNotes}
+          viewingProgress={d.viewingProgress}
         />
 
         <div className="flex min-h-0 min-w-0 w-full flex-1 flex-col">
           <AdminDashboardHeader
             t={d.t}
-            signOut={d.signOut}
             viewingNotes={d.viewingNotes}
             viewingCategories={d.viewingCategories}
             activeCategory={d.activeCategory}
             labelForCategory={d.labelForCategory}
-            categories={d.categories}
-            categoryId={d.categoryId}
-            setCategoryId={d.setCategoryId}
-            setActiveSection={d.setActiveSection}
             viewingQuestions={d.viewingQuestions}
+            viewingProgress={d.viewingProgress}
           />
 
           <main className="relative flex-1 overflow-hidden px-4 py-8 sm:px-6 lg:px-10">
             <AdminDashboardBackground />
             <div
               className={
-                d.viewingQuestions
+                d.viewingQuestions || d.viewingProgress
                   ? 'relative mx-auto w-full max-w-none'
                   : 'relative mx-auto max-w-4xl lg:max-w-5xl'
               }
             >
+              {d.viewingProgress && (
+                <AdminProgressSection t={d.t} categories={d.categories} labelForCategory={d.labelForCategory} />
+              )}
+
               {d.viewingNotes && (
                 <AdminNotesSection
                   t={d.t}
@@ -67,7 +68,7 @@ export function AdminDashboard() {
                 />
               )}
 
-              {(d.viewingCategories || d.viewingQuestions) && (
+              {(d.viewingCategories || d.viewingQuestions) && !d.viewingProgress && (
                 <>
                   {d.viewingCategories && (
                     <AdminCategoryForms

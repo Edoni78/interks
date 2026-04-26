@@ -1,13 +1,37 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
-export function QuestionFlipCard({ t, questionText, answerText, minHeightClass = 'min-h-[min(42vh,360px)]' }) {
+export function QuestionFlipCard({
+  t,
+  questionText,
+  answerText,
+  questionId,
+  onRevealAnswer,
+  minHeightClass = 'min-h-[min(42vh,360px)]',
+}) {
   const [flipped, setFlipped] = useState(false);
+  const loggedRef = useRef(false);
+
+  useEffect(() => {
+    loggedRef.current = false;
+    setFlipped(false);
+  }, [questionId]);
+
+  const handleClick = () => {
+    setFlipped((prev) => {
+      const next = !prev;
+      if (next && onRevealAnswer && questionId && !loggedRef.current) {
+        loggedRef.current = true;
+        onRevealAnswer();
+      }
+      return next;
+    });
+  };
 
   return (
     <div className="[perspective:1400px]">
       <button
         type="button"
-        onClick={() => setFlipped((f) => !f)}
+        onClick={handleClick}
         aria-pressed={flipped}
         aria-label={t('admin.dashboard.flashcardFlipAria')}
         className="block w-full rounded-xl text-left outline-none transition focus-visible:ring-2 focus-visible:ring-line focus-visible:ring-offset-2 focus-visible:ring-offset-canvas"
